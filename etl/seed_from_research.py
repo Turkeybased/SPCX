@@ -71,13 +71,14 @@ def analysis():
             {"text": "Starlink is a real, growing, profitable business: $11.4B revenue (61% of total), $4.4B op profit in 2025.", "source_url": FINDINGS},
             {"text": "83% share of global mass-to-orbit (2025) - genuine monopoly economics in launch.", "source_url": "https://global.morningstar.com/en-ca/stocks/spacex-what-investors-need-know-about-its-enormous-upcoming-ipo"},
             {"text": "Contracted AI revenue exists: Anthropic leases Colossus 1 & 2 at $1.25B/month (~$15B/yr) through May 2029.", "source_url": "https://aswathdamodaran.substack.com/p/revisiting-the-spacex-valuation-a"},
+            {"text": "Second anchor tenant (FWP, Jun 5): Google signed a Cloud Service Agreement paying SpaceX $920M/month from Oct 2026 through Jun 2029 (~110,000 NVIDIA GPUs). Caveats in the same filing: if SpaceX misses the Sep 30, 2026 GPU delivery deadline Google can terminate or take fewer at pro-rata fees, and after Dec 31, 2026 either party can terminate on 90 days' notice.", "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm"},
             {"text": "Size is on its side: IPOs with LTM sales >= $100M roughly match style benchmarks (+2.3% 3yr style-adj); long-run IPO underperformance concentrates in small caps.", "source_url": RITTER},
             {"text": "Damodaran's moonshot scenario values the AI segment alone at ~$1.3T standalone (7% probability per Morningstar's weighting) - the bull case is real, just low-probability-weighted.", "source_url": FINDINGS},
             {"text": "CoreWeave lesson: the last hated AI-infra IPO (priced below range, flat day-1) returned +139% to Jun 2026. Sentiment at listing is not destiny.", "source_url": FINDINGS},
         ],
         "timeline": [
             {"date": "2026-06-11", "event": "Pricing (after close). Watch: final price vs $135, greenshoe terms in 424B4, final Musk voting % (pin conflict #2).", "source_url": FINDINGS},
-            {"date": "2026-06-12", "event": "First trade. Base rate: day-1 pop says NOTHING about the 1-yr outcome (Snap +44% day-1 then -68%; Uber -7.6% day-1 then +52%). Chasing the pop is the classic error.", "source_url": FINDINGS},
+            {"date": "2026-06-12", "event": "First trade. Base rate: the day-1 pop is a weak, high-dispersion guide to the 1-yr outcome (Snap +44% day-1 then -68% long-run; Uber -7.6% day-1 then +52%; Figma +250% then below offer). Chasing the pop is the classic error.", "source_url": FINDINGS},
             {"date": "2026-07-07 to 2026-07-22", "event": "Quiet period ends ~25-40 days post-IPO: Goldman/Morgan Stanley initiations land. Underwriter targets are structurally biased high.", "source_url": FINDINGS, "derived": True},
             {"date": "~2026-08-21 to 2026-10-25", "event": "Staggered unlocks: +7% of holdings at 70/90/105/120/135 days (Aug 21, Sep 10, Sep 25, Oct 10, Oct 25 - derived from Jun 12). Repeated supply waves; Facebook 2012 bottomed amid its lockup expiries, ~-50% from offer, 4 months in.", "source_url": GRANITE, "derived": True},
             {"date": "~2026-09", "event": "First quarterly earnings = first 20% unlock AND first real look at post-IPO xAI burn. Largest single supply + information event of year one.", "source_url": GRANITE},
@@ -86,13 +87,18 @@ def analysis():
         ],
         "base_rates": [
             {"stat": "56.1%", "text": "of ALL IPOs (1975-2021) traded below offer price 3 years later. For large IPOs (sales >= $100M): 44.5%. Patience has usually been paid.", "source_url": RITTER},
-            {"stat": "0", "text": "correlation between day-1 pop and 1-yr outcome in the comp set: Snap +44% to -6.6%; Figma +250% to below offer; Uber -7.6% day-1 to +52% long-run.", "source_url": FINDINGS},
+            {"stat": "r=0.46", "text": "Pearson correlation of day-1 pop vs +365d return in this 15-name comp set (computed) - positive but not reliable enough to chase: Snap +44% to -6.6%, Figma +250% to below offer, Uber -7.6% to +52%. At cohort level the hottest pop years (1999-2000, 64.6% mean) produced the worst 3-yr returns in the dataset.", "source_url": FINDINGS, "derived": True},
             {"stat": "6/8", "text": "of profitable-at-IPO comps are positive vs offer to Jun 2026; the 9 unprofitable ones split into big winners (Snowflake, Airbnb) and -80% wrecks (Lyft, Rivian). SpaceX lists unprofitable.", "source_url": FINDINGS},
             {"stat": "-53.1%", "text": "average 3-yr buy-and-hold of the 1999-2000 bubble cohort (856 IPOs, 64.6% mean day-1 pop). Pops were broad then; 2025-26 pops are concentrated - a real difference.", "source_url": RITTER},
             {"stat": "-3.6%/yr", "text": "average IPO underperformance vs same-size firms for 5 years post-listing (Ritter) - concentrated in small caps; large IPOs roughly match benchmarks.", "source_url": RITTER},
             {"stat": "-49.4%", "text": "average 1-yr market-adjusted return of deSPACs 2012-2022 - the base rate for the LAST hype-wave's vehicle of choice. (SPCX is a traditional IPO; this is the cautionary anchor.)", "source_url": "https://site.warrington.ufl.edu/ritter/files/IPOs-SPACs.pdf"},
         ],
     }
+
+
+# +365d figures where WP-4 CSV and yfinance disagree >20% (see CONFLICTS):
+# the seed value is kept and the daily ETL must not overwrite or re-trip on it.
+QUARANTINED_1YR = {"BABA", "V", "SNAP", "COIN", "CRWV"}
 
 
 def f(v):
@@ -130,6 +136,8 @@ def tech_comps():
             "conflict_note": CONFLICTS.get(tk),
             "as_of": AS_OF,
         }
+        if tk in QUARANTINED_1YR:
+            rec["one_yr_quarantined"] = True
         out.append(rec)
     return out
 
@@ -162,6 +170,7 @@ def deals():
             ],
             "private_ladder": "$400B/$212 (Jul 2025 tender) -> $800B/$421 pre-split (Dec 2025 tender; resolved - X post claiming $135/$250B is erroneous) -> $1.25T (Feb 2026 xAI merger) -> ~$1.5T (Apr 2026) -> $1.75-1.77T IPO",
             "gray_market": "Hyperliquid perp ~$157 (~+16% vs offer) Jun 10, off May peak $216-230; Polymarket consensus first close ~$175 (~$2.3T), 75% prob close >$135",
+            "contracted_ai_revenue": "Anthropic Colossus lease $1.25B/mo to May 2029 (S-1); Google Cloud Service Agreement $920M/mo Oct 2026-Jun 2029, ~110k NVIDIA GPUs (FWP Jun 5) - terminable by either party on 90 days' notice after Dec 31 2026, and by Google if the Sep 30 2026 GPU delivery deadline is missed",
             "cik": "1181412",
             "day1_return_pct": None, "one_yr_return_pct": None, "return_to_date_pct": None,
             "verified": False,
@@ -205,7 +214,7 @@ def deals():
             "valuation_ladder": "$157B (Oct 2024) -> $300B (Mar 2025) -> ~$500B (Oct 2025, PBC conversion) -> $852B (Mar 2026)",
             "day1_return_pct": None, "one_yr_return_pct": None, "return_to_date_pct": None,
             "verified": False,
-            "source_url": "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html",
+            "source_url": "https://openai.com/index/openai-submits-confidential-s-1/",
             "conflict_note": "(#6 RESOLVED) Round closed Mar 31 2026 per OpenAI.com/Bloomberg. (#8, expanded v2 sec.3.4) Loss figures are THREE distinct metrics conflated in media: ~$14B 2026 non-GAAP vs $25-26B GAAP est.; cumulative '$44B' (2023-28, excl. stock comp, older docs) vs '$115B' (cash burn thru 2029, The Information) vs '$143B' (negative FCF 2024-29 incl. capex, Deutsche Bank). 2028 op loss: WSJ $74B vs TechCrunch $85B - both cited, not averaged.",
             "as_of": AS_OF,
         },
@@ -261,6 +270,18 @@ def main():
     comps["tech_comps"] = tech_comps()
     comps["cohorts"] = cohorts()
     comps["analysis"] = analysis()
+    # normalize any local doc link to the v2 findings (v1 docs are superseded)
+    def normalize(node):
+        if isinstance(node, dict):
+            u = node.get("source_url")
+            if isinstance(u, str) and u.startswith("/docs/") and u != FINDINGS:
+                node["source_url"] = FINDINGS
+            for v in node.values():
+                normalize(v)
+        elif isinstance(node, list):
+            for v in node:
+                normalize(v)
+    normalize(comps)
     comps["_meta"]["status"] = "SEEDED from docs/research/ v2 drop (2026-06-10)"
     comps["_meta"]["note"] = ("Historical seed from docs/research/03-research-findings.md (v2) and comps.csv "
                               "(WP-4, EDGAR 424B4-derived, offer-price return basis). Conflicts #2, #3, #6 resolved in v2; "

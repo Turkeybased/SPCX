@@ -155,18 +155,22 @@ def main():
                 comp_to_date = p["return_to_date_pct"]
                 comp_day1 = p["day1_return_pct"]
             seed_1yr = rec.get("one_yr_return_pct")
+            quarantined = rec.get("one_yr_quarantined")
             diverges = (seed_1yr is not None and comp_1yr is not None and seed_1yr != 0
                         and abs(comp_1yr - seed_1yr) / abs(seed_1yr) > DIVERGENCE_LIMIT)
-            if diverges and rec.get("verified"):
+            if diverges and rec.get("verified") and not quarantined:
                 # already-verified figure moving >20% = data bug, not news
                 divergences.append((tk, seed_1yr, comp_1yr))
                 continue
-            # unverified seeds (findings-doc conflict #9) are approximations meant
-            # to be replaced; overwrite but surface material changes in the report
-            if seed_1yr != comp_1yr:
-                changed.append((tk, seed_1yr, comp_1yr))
-            if comp_1yr is not None or seed_1yr is None:
-                rec["one_yr_return_pct"] = comp_1yr if comp_1yr is not None else seed_1yr
+            if not quarantined:
+                # unverified seeds (findings-doc conflict #9) are approximations
+                # meant to be replaced; overwrite, surfacing material changes
+                if seed_1yr != comp_1yr:
+                    changed.append((tk, seed_1yr, comp_1yr))
+                if comp_1yr is not None or seed_1yr is None:
+                    rec["one_yr_return_pct"] = comp_1yr if comp_1yr is not None else seed_1yr
+            # quarantined +365d figures (documented WP-4/yfinance disagreements,
+            # see conflict_note) keep the seed; live fields still refresh below
             if comp_day1 is not None and rec.get("day1_return_pct") is None:
                 rec["day1_return_pct"] = comp_day1
             rec["return_to_date_pct"] = comp_to_date
@@ -175,17 +179,20 @@ def main():
             rec["verified"] = True
 
     if divergences:
-        print("STOP: computed figures diverge from seed by >20% — comps.json "
-              "NOT updated for these (likely a data bug, not news):", file=sys.stderr)
+        # abort WITHOUT writing comps.json - a verified figure moving >20%
+        # means a data bug somewhere; nothing gets persisted until resolved
+        print("STOP: computed figures diverge from verified seed by >20% — "
+              "comps.json NOT written (likely a data bug, not news):", file=sys.stderr)
         for tk, seed, comp in divergences:
             print(f"  {tk}: seed 1yr {seed}% vs computed {comp}%", file=sys.stderr)
+        return 1
 
     COMPS_PATH.write_text(json.dumps(comps, indent=2), encoding="utf-8")
     if changed:
         print("verified 1-yr figures that changed vs seed:")
         for tk, seed, comp in changed:
             print(f"  {tk}: {seed} -> {comp}")
-    return 1 if divergences else 0
+    return 0
 
 
 if __name__ == "__main__":

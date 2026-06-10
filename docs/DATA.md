@@ -44,11 +44,14 @@ beyond formatting and one derived chart coloring.
 2. **Return basis.** Tech comps: vs split-adjusted **offer price** (WP-4
    convention; yfinance is split-adjusted, so bases match). Mega IPOs: vs
    **first close** (no offer prices in seed) — labeled in the UI.
-3. **Divergence tripwire.** If a computed figure differs from a `verified`
-   seed by >20%, the record is NOT updated and the run exits non-zero.
-   Five WP-4 `+365d` figures are currently quarantined this way (BABA, V,
-   SNAP, COIN, CRWV) — each carries a `conflict_note` with both values.
-   V and COIN look like WP-4 date errors; flagged for re-research.
+3. **Divergence tripwire.** If a computed figure differs from a `verified`,
+   non-quarantined seed by >20%, the run aborts WITHOUT writing `comps.json`
+   and exits non-zero — nothing persists until the discrepancy is resolved.
+   Five WP-4 `+365d` figures carry `one_yr_quarantined: true` (BABA, V,
+   SNAP, COIN, CRWV): their seed value is kept, the daily ETL skips the
+   overwrite and does not re-trip on them, and each `conflict_note` shows
+   both values. V and COIN look like WP-4 date errors; flagged for
+   re-research.
 4. **Conflicts are shown, never averaged.** `conflict_note` → ⚠ tooltip.
 5. **No fabrication.** Anything not in the research inputs renders
    "n/a — see findings doc".

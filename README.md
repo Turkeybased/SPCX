@@ -6,13 +6,17 @@ dashboard (`site/index.html`, Chart.js via CDN). No backend, no API keys.
 
 ## Status
 
-⚠ **Historical seed incomplete.** `data/comps.json` must be populated from
-`03-research-findings.md` (the four tables — deals, mega-IPOs, tech comps,
-cohorts — plus the 9 conflict notes from §5). That file was not present when
-this repo was scaffolded, and per project constraints no historical figure is
-fabricated. The dashboard renders "n/a — see findings doc" wherever data is
-missing. Drop the findings doc into the repo root and transcribe the tables
-into `comps.json` (schema below) to light up views R2–R4.
+**Seeded and live.** `data/comps.json` is populated from the v2 research drop
+(`docs/research/`, 2026-06-10): 3 deals, 10 mega-IPOs, 17 tech comps
+(offer-price return basis, EDGAR 424B4-derived), Ritter cohort statistics,
+and a sourced analysis layer (red flags / counterpoints / timeline / base
+rates) rendered by the question-first dashboard. Conflicts #2 (Musk voting =
+82.4%), #3 (Dec 2025 tender = $421/$800B), and #6 (OpenAI round close) are
+resolved in v2; five WP-4 `+365d` figures are quarantined pending re-research
+(see `docs/DATA.md`). The remaining gap is live SPCX trading data, which the
+daily ETL picks up automatically once SPCX trades (expected 2026-06-12).
+
+Full provenance map and integrity rules: [docs/DATA.md](docs/DATA.md).
 
 ## Layout
 

@@ -92,7 +92,7 @@
 <div class="statgrid" id="baserates"></div>
 <div style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px">
   <div>
-    <div class="sub" style="margin-bottom:6px">Day-1 pop (x) vs +365d return (y), both vs offer — point size = raise. If the pop predicted the year, this would be a diagonal line. It isn't.</div>
+    <div class="sub" style="margin-bottom:6px" id="scatter-caption">Day-1 pop (x) vs +365d return (y), both vs offer — point size = raise.</div>
     <div class="chartbox"><canvas id="scatter"></canvas></div>
   </div>
   <div>
@@ -126,7 +126,9 @@ const fmtUsd = v => (v == null) ? NA :
    v >= 1e9  ? '$' + (v/1e9).toFixed(1)  + 'B' :
    v >= 1e6  ? '$' + (v/1e6).toFixed(0)  + 'M' : '$' + v.toLocaleString());
 const conflict = n => n ? ` <span class="conf" title="${String(n).replace(/"/g,'&quot;')}">⚠</span>` : '';
-const srcLink = u => u ? ` <a class="src" href="${u}" target="_blank">[src]</a>` : '';
+// local research-doc links are stored root-relative (/docs/...) - rewrite to
+// ../docs/... so they resolve no matter where the repo root is mounted
+const srcLink = u => u ? ` <a class="src" href="${u.startsWith('/docs/') ? '..' + u : u}" target="_blank">[src]</a>` : '';
 
 async function load(p) {
   try { const r = await fetch(p); if (!r.ok) throw 0; return await r.json(); }
@@ -224,6 +226,18 @@ window.addEventListener('focus', healCharts);
   const mega = comps?.mega_ipos ?? [];
   const tech = comps?.tech_comps ?? [];
   const pts = tech.filter(r => r.day1_return_pct != null && r.one_yr_return_pct != null);
+  if (pts.length > 2) {
+    const xs = pts.map(r => r.day1_return_pct), ys = pts.map(r => r.one_yr_return_pct);
+    const mean = a => a.reduce((s,v) => s+v, 0) / a.length;
+    const mx = mean(xs), my = mean(ys);
+    const cov = mean(xs.map((x,i) => (x-mx)*(ys[i]-my)));
+    const sd = (a,m) => Math.sqrt(mean(a.map(v => (v-m)**2)));
+    const r = cov / (sd(xs,mx) * sd(ys,my));
+    document.getElementById('scatter-caption').textContent =
+      `Day-1 pop (x) vs +365d return (y), both vs offer — point size = raise. ` +
+      `Pearson r = ${r.toFixed(2)} across these ${pts.length} names: a weak positive lean with huge dispersion — ` +
+      `not reliable enough to chase the pop.`;
+  }
   if (pts.length) {
     mkChart('scatter', { type:'bubble', data:{ datasets:[{
       label:'IPO comps',

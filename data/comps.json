@@ -68,6 +68,7 @@
       ],
       "private_ladder": "$400B/$212 (Jul 2025 tender) -> $800B/$421 pre-split (Dec 2025 tender; resolved - X post claiming $135/$250B is erroneous) -> $1.25T (Feb 2026 xAI merger) -> ~$1.5T (Apr 2026) -> $1.75-1.77T IPO",
       "gray_market": "Hyperliquid perp ~$157 (~+16% vs offer) Jun 10, off May peak $216-230; Polymarket consensus first close ~$175 (~$2.3T), 75% prob close >$135",
+      "contracted_ai_revenue": "Anthropic Colossus lease $1.25B/mo to May 2029 (S-1); Google Cloud Service Agreement $920M/mo Oct 2026-Jun 2029, ~110k NVIDIA GPUs (FWP Jun 5) - terminable by either party on 90 days' notice after Dec 31 2026, and by Google if the Sep 30 2026 GPU delivery deadline is missed",
       "cik": "1181412",
       "day1_return_pct": null,
       "one_yr_return_pct": null,
@@ -129,7 +130,7 @@
       "one_yr_return_pct": null,
       "return_to_date_pct": null,
       "verified": false,
-      "source_url": "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html",
+      "source_url": "https://openai.com/index/openai-submits-confidential-s-1/",
       "conflict_note": "(#6 RESOLVED) Round closed Mar 31 2026 per OpenAI.com/Bloomberg. (#8, expanded v2 sec.3.4) Loss figures are THREE distinct metrics conflated in media: ~$14B 2026 non-GAAP vs $25-26B GAAP est.; cumulative '$44B' (2023-28, excl. stock comp, older docs) vs '$115B' (cash burn thru 2029, The Information) vs '$143B' (negative FCF 2024-29 incl. capex, Deutsche Bank). 2028 op loss: WSJ $74B vs TechCrunch $85B - both cited, not averaged.",
       "as_of": "2026-06-10"
     }
@@ -144,7 +145,7 @@
       "valuation_usd": 1700000000000,
       "exchange": "Tadawul",
       "note": "only valuation peer to SpaceX ($1.7T) - but earned ~$88B net income in 2019; SpaceX is loss-making",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": 0.85,
@@ -162,7 +163,7 @@
       "raise_with_greenshoe_usd": 22100000000,
       "valuation_usd": null,
       "exchange": "SSE+HKEX",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": 24.16,
@@ -179,7 +180,7 @@
       "raise_usd": 21900000000,
       "valuation_usd": 30000000000,
       "exchange": "HKEX+SSE",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": 106.25,
@@ -197,7 +198,7 @@
       "raise_with_greenshoe_usd": 25000000000,
       "valuation_usd": 167000000000,
       "exchange": "NYSE",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": -31.94,
@@ -214,7 +215,7 @@
       "raise_usd": 21300000000,
       "valuation_usd": 64000000000,
       "exchange": "TSE",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": 11.97,
@@ -232,7 +233,7 @@
       "valuation_usd": 76000000000,
       "exchange": "TSE",
       "note": "delisted (taken private by NTT 2020) - no live ticker",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10"
     },
@@ -244,7 +245,7 @@
       "raise_with_greenshoe_usd": 23100000000,
       "valuation_usd": null,
       "exchange": "NYSE",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": "(#5) Raise $18.1-23.1B depending on greenshoe/preferred treatment; valuation $50B vs $62B across sources - not averaged, left null.",
       "as_of": "2026-06-10",
       "one_yr_return_pct": -36.59,
@@ -262,7 +263,7 @@
       "raise_with_greenshoe_usd": 19700000000,
       "valuation_usd": 34000000000,
       "exchange": "NYSE",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": -6.74,
@@ -280,7 +281,7 @@
       "raise_with_greenshoe_usd": 20500000000,
       "valuation_usd": 31000000000,
       "exchange": "HKEX",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": 4.56,
@@ -297,7 +298,7 @@
       "raise_usd": 16000000000,
       "valuation_usd": 104000000000,
       "exchange": "Nasdaq",
-      "source_url": "/docs/03-research-findings.md",
+      "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
       "one_yr_return_pct": -32.62,
@@ -376,7 +377,11 @@
       "note": "With greenshoe $25B",
       "source_url": "https://www.sec.gov/Archives/edgar/data/1577552/000119312514347620/d709111d424b4.htm",
       "conflict_note": "+365d return: -13.3% (WP-4 CSV, price 58.97) vs -6.0% (yfinance close on/after IPO+365d, 2015-09-21). Likely different anniversary-date convention. Not averaged; CSV figure shown.",
-      "as_of": "2026-06-10"
+      "as_of": "2026-06-10",
+      "one_yr_quarantined": true,
+      "return_to_date_pct": 69.68,
+      "last_price": 115.38,
+      "last_price_as_of": "2026-06-10"
     },
     {
       "company": "Visa",
@@ -397,7 +402,11 @@
       "note": "Split-adj 4:1",
       "source_url": "https://www.sec.gov/Archives/edgar/data/1403161/000119312508060989/d424b4.htm",
       "conflict_note": "+365d return: +45.5% (WP-4 CSV, price 16.00) vs +19.8% (yfinance split-adj close ~13.2 on 2009-03-19). CSV +365d price looks like a later-2009 date - probable WP-4 data error. Not averaged; CSV figure shown pending re-research.",
-      "as_of": "2026-06-10"
+      "as_of": "2026-06-10",
+      "one_yr_quarantined": true,
+      "return_to_date_pct": 2836.0,
+      "last_price": 322.96,
+      "last_price_as_of": "2026-06-10"
     },
     {
       "company": "Snap",
@@ -418,7 +427,11 @@
       "note": null,
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": "+365d return: -6.6% (WP-4 CSV, price 15.87) vs +5.9% (yfinance close ~18.01 on 2018-03-02). Different date convention suspected. Not averaged; CSV figure shown.",
-      "as_of": "2026-06-10"
+      "as_of": "2026-06-10",
+      "one_yr_quarantined": true,
+      "return_to_date_pct": -68.35,
+      "last_price": 5.38,
+      "last_price_as_of": "2026-06-10"
     },
     {
       "company": "Lyft",
@@ -535,7 +548,11 @@
       "note": "Direct listing; no capital raised",
       "source_url": "https://www.sec.gov/Archives/edgar/data/1679788/000162828021003168/coinbaseglobalincs-1.htm",
       "conflict_note": "+365d return: -54.9% (WP-4 CSV, price 112.71) vs -41.1% (yfinance close ~147 on 2022-04-14). CSV price matches May-2022 crash levels, not the April anniversary - probable WP-4 data error. Not averaged; CSV figure shown pending re-research.",
-      "as_of": "2026-06-10"
+      "as_of": "2026-06-10",
+      "one_yr_quarantined": true,
+      "return_to_date_pct": -38.41,
+      "last_price": 153.97,
+      "last_price_as_of": "2026-06-10"
     },
     {
       "company": "Rivian",
@@ -628,7 +645,11 @@
       "note": "Flat on day-1",
       "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000119312525067651/d899798d424b4.htm",
       "conflict_note": "(#1) IPO year: Mar 2025 (CNBC, authoritative) vs 'Mar 2026' in two 2026 articles (errors). +365d return: +93.7% (WP-4 CSV, price 77.47) vs +72.9% (yfinance close on/after 2026-03-28). Different date convention suspected. Not averaged; CSV figure shown.",
-      "as_of": "2026-06-10"
+      "as_of": "2026-06-10",
+      "one_yr_quarantined": true,
+      "return_to_date_pct": 139.03,
+      "last_price": 95.61,
+      "last_price_as_of": "2026-06-10"
     },
     {
       "company": "Circle",
@@ -813,6 +834,10 @@
         "source_url": "https://aswathdamodaran.substack.com/p/revisiting-the-spacex-valuation-a"
       },
       {
+        "text": "Second anchor tenant (FWP, Jun 5): Google signed a Cloud Service Agreement paying SpaceX $920M/month from Oct 2026 through Jun 2029 (~110,000 NVIDIA GPUs). Caveats in the same filing: if SpaceX misses the Sep 30, 2026 GPU delivery deadline Google can terminate or take fewer at pro-rata fees, and after Dec 31, 2026 either party can terminate on 90 days' notice.",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm"
+      },
+      {
         "text": "Size is on its side: IPOs with LTM sales >= $100M roughly match style benchmarks (+2.3% 3yr style-adj); long-run IPO underperformance concentrates in small caps.",
         "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/"
       },
@@ -833,7 +858,7 @@
       },
       {
         "date": "2026-06-12",
-        "event": "First trade. Base rate: day-1 pop says NOTHING about the 1-yr outcome (Snap +44% day-1 then -68%; Uber -7.6% day-1 then +52%). Chasing the pop is the classic error.",
+        "event": "First trade. Base rate: the day-1 pop is a weak, high-dispersion guide to the 1-yr outcome (Snap +44% day-1 then -68% long-run; Uber -7.6% day-1 then +52%; Figma +250% then below offer). Chasing the pop is the classic error.",
         "source_url": "/docs/research/03-research-findings.md"
       },
       {
@@ -872,9 +897,10 @@
         "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/"
       },
       {
-        "stat": "0",
-        "text": "correlation between day-1 pop and 1-yr outcome in the comp set: Snap +44% to -6.6%; Figma +250% to below offer; Uber -7.6% day-1 to +52% long-run.",
-        "source_url": "/docs/research/03-research-findings.md"
+        "stat": "r=0.46",
+        "text": "Pearson correlation of day-1 pop vs +365d return in this 15-name comp set (computed) - positive but not reliable enough to chase: Snap +44% to -6.6%, Figma +250% to below offer, Uber -7.6% to +52%. At cohort level the hottest pop years (1999-2000, 64.6% mean) produced the worst 3-yr returns in the dataset.",
+        "source_url": "/docs/research/03-research-findings.md",
+        "derived": true
       },
       {
         "stat": "6/8",
