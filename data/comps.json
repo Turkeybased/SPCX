@@ -750,5 +750,152 @@
       "conflict_note": "Mean 2025 day-1: 29.3% (Ritter, N=90) vs 24% (ION, v1 doc) - different samples/definitions; Ritter shown as primary.",
       "as_of": "2026-06-10"
     }
-  ]
+  ],
+  "analysis": {
+    "note": "Interpretive layer distilled from docs/research/03-research-findings.md. Flags are observations with sources, not recommendations.",
+    "red_flags": [
+      {
+        "text": "xAI drag: $6.35B 2025 operating loss on $3.2B revenue (which bundles X/Twitter ads - Grok-only revenue is smaller). Pre-merger core SpaceX made ~$8B op profit; consolidated is a ~$4.9B net-loss company.",
+        "source_url": "https://global.morningstar.com/en-gb/stocks/financials-look-reckless-lifting-xais-hood-spacex-ipo"
+      },
+      {
+        "text": "Starship: ~$3B/yr R&D with zero Starship revenue - the S-1's top risk factor.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "text": "Both independent valuations are far below the ask: Morningstar $780B (-53%), Damodaran ~$1.30T (-26%). Nobody independent gets to $1.75T.",
+        "source_url": "https://www.wsj.com/business/what-the-dean-of-valuation-thinks-elon-musks-spacex-is-really-worth-bfe8061c"
+      },
+      {
+        "text": "~94x trailing sales while loss-making. Profitable mega-comps listed at far less: Facebook ~28x, Google ~16x, Alibaba ~19x. Aramco at the same $1.7T valuation earned ~$88B net income.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "text": "Priced at ~2.2x the company's own December 2025 tender mark ($800B, $421/sh pre-split) six months earlier - and 40%+ above its Feb 2026 self-assessed $1.25T.",
+        "source_url": "https://www.reuters.com/business/spacex-sets-800-billion-valuation-bloomberg-news-reports-2025-12-13/"
+      },
+      {
+        "text": "Retail allocation ~30% (~$22.5B) is ~3x the mega-cap norm - heavy distribution to retail at the ask is historically a late-cycle pattern.",
+        "source_url": "https://www.cnbc.com/2026/06/09/spacex-ipo-explained-stock-price-date.html"
+      },
+      {
+        "text": "Gray-market premium is shrinking into the deal: Hyperliquid perps ~$216-230 mid-May down to ~$157 (+16%) by Jun 10.",
+        "source_url": "https://www.techtimes.com/articles/318170/20260610/spacex-ipo-order-books-close-four-times-oversubscribed-gray-market-slide-signals-shrinking-premium.htm"
+      },
+      {
+        "text": "Aggressive lockup: 20% of insider holdings unlock at the FIRST quarterly earnings (~Sep), +7% at 70/90/105/120/135 days; fully unlocked Sep-Dec 2026 vs the standard 180-day. Early, repeated supply waves.",
+        "source_url": "https://graniteshares.com/research/everything-you-need-to-know-about-spacex/"
+      },
+      {
+        "text": "Controlled company: Musk holds 82.4% of votes via 10-vote Class B. Public Class A has 1 vote/share and cannot influence the board.",
+        "source_url": "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/documents/clients/SPCXLV/SPCXLVred.pdf"
+      },
+      {
+        "text": "Balance sheet carries ~$30B debt / ~$14B net debt after a $20B bridge loan taken in Mar 2026 to retire xAI's debt stack.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "text": "Demand signal is murky: Bloomberg TV says ~2x oversubscribed; Reuters/Eastern Herald say 3.5-4x. Conflict unresolved.",
+        "source_url": "/docs/research/03-research-findings.md"
+      }
+    ],
+    "counterpoints": [
+      {
+        "text": "Starlink is a real, growing, profitable business: $11.4B revenue (61% of total), $4.4B op profit in 2025.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "text": "83% share of global mass-to-orbit (2025) - genuine monopoly economics in launch.",
+        "source_url": "https://global.morningstar.com/en-ca/stocks/spacex-what-investors-need-know-about-its-enormous-upcoming-ipo"
+      },
+      {
+        "text": "Contracted AI revenue exists: Anthropic leases Colossus 1 & 2 at $1.25B/month (~$15B/yr) through May 2029.",
+        "source_url": "https://aswathdamodaran.substack.com/p/revisiting-the-spacex-valuation-a"
+      },
+      {
+        "text": "Size is on its side: IPOs with LTM sales >= $100M roughly match style benchmarks (+2.3% 3yr style-adj); long-run IPO underperformance concentrates in small caps.",
+        "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/"
+      },
+      {
+        "text": "Damodaran's moonshot scenario values the AI segment alone at ~$1.3T standalone (7% probability per Morningstar's weighting) - the bull case is real, just low-probability-weighted.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "text": "CoreWeave lesson: the last hated AI-infra IPO (priced below range, flat day-1) returned +139% to Jun 2026. Sentiment at listing is not destiny.",
+        "source_url": "/docs/research/03-research-findings.md"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-11",
+        "event": "Pricing (after close). Watch: final price vs $135, greenshoe terms in 424B4, final Musk voting % (pin conflict #2).",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "date": "2026-06-12",
+        "event": "First trade. Base rate: day-1 pop says NOTHING about the 1-yr outcome (Snap +44% day-1 then -68%; Uber -7.6% day-1 then +52%). Chasing the pop is the classic error.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "date": "2026-07-07 to 2026-07-22",
+        "event": "Quiet period ends ~25-40 days post-IPO: Goldman/Morgan Stanley initiations land. Underwriter targets are structurally biased high.",
+        "source_url": "/docs/research/03-research-findings.md",
+        "derived": true
+      },
+      {
+        "date": "~2026-08-21 to 2026-10-25",
+        "event": "Staggered unlocks: +7% of holdings at 70/90/105/120/135 days (Aug 21, Sep 10, Sep 25, Oct 10, Oct 25 - derived from Jun 12). Repeated supply waves; Facebook 2012 bottomed amid its lockup expiries, ~-50% from offer, 4 months in.",
+        "source_url": "https://graniteshares.com/research/everything-you-need-to-know-about-spacex/",
+        "derived": true
+      },
+      {
+        "date": "~2026-09",
+        "event": "First quarterly earnings = first 20% unlock AND first real look at post-IPO xAI burn. Largest single supply + information event of year one.",
+        "source_url": "https://graniteshares.com/research/everything-you-need-to-know-about-spacex/"
+      },
+      {
+        "date": "~2026-10 / Q4 2026",
+        "event": "Anthropic (~Oct) and OpenAI (~Q4) IPO windows: two more mega-AI listings competing for the same institutional dollars. Supply of 'AI mega-cap exposure' stops being scarce.",
+        "source_url": "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html"
+      },
+      {
+        "date": "2027-06-13",
+        "event": "Musk's 366-day hold ends. Also the +365d mark where this dashboard's comp table says the average recent mega-IPO verdict is in.",
+        "source_url": "/docs/research/03-research-findings.md",
+        "derived": true
+      }
+    ],
+    "base_rates": [
+      {
+        "stat": "56.1%",
+        "text": "of ALL IPOs (1975-2021) traded below offer price 3 years later. For large IPOs (sales >= $100M): 44.5%. Patience has usually been paid.",
+        "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/"
+      },
+      {
+        "stat": "0",
+        "text": "correlation between day-1 pop and 1-yr outcome in the comp set: Snap +44% to -6.6%; Figma +250% to below offer; Uber -7.6% day-1 to +52% long-run.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "stat": "6/8",
+        "text": "of profitable-at-IPO comps are positive vs offer to Jun 2026; the 9 unprofitable ones split into big winners (Snowflake, Airbnb) and -80% wrecks (Lyft, Rivian). SpaceX lists unprofitable.",
+        "source_url": "/docs/research/03-research-findings.md"
+      },
+      {
+        "stat": "-53.1%",
+        "text": "average 3-yr buy-and-hold of the 1999-2000 bubble cohort (856 IPOs, 64.6% mean day-1 pop). Pops were broad then; 2025-26 pops are concentrated - a real difference.",
+        "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/"
+      },
+      {
+        "stat": "-3.6%/yr",
+        "text": "average IPO underperformance vs same-size firms for 5 years post-listing (Ritter) - concentrated in small caps; large IPOs roughly match benchmarks.",
+        "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/"
+      },
+      {
+        "stat": "-49.4%",
+        "text": "average 1-yr market-adjusted return of deSPACs 2012-2022 - the base rate for the LAST hype-wave's vehicle of choice. (SPCX is a traditional IPO; this is the cautionary anchor.)",
+        "source_url": "https://site.warrington.ufl.edu/ritter/files/IPOs-SPACs.pdf"
+      }
+    ]
+  }
 }
