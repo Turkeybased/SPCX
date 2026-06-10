@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "status": "SEED INCOMPLETE — awaiting 03-research-findings.md",
+    "note": "The historical tables (deals, mega_ipos, tech_comps, cohorts) and the 9 conflict notes from §5 must be transcribed from 03-research-findings.md. That file was not present on this machine at build time. Per project constraints, no historical figure may be fabricated, so the arrays below are empty except for facts supplied directly in the project handoff (the SPCX deal record). The dashboard renders 'n/a — see findings doc' for anything missing. ETL never modifies seed fields; it only fills fields listed in _meta.etl_writable_fields.",
+    "etl_writable_fields": ["day1_return_pct", "one_yr_return_pct", "return_to_date_pct", "verified", "last_price", "last_price_as_of"],
+    "schema": {
+      "record": "{ ...metric_fields, source_url: string, conflict_note: string|null, as_of: 'YYYY-MM-DD' }"
+    },
+    "as_of": "2026-06-10"
+  },
+  "deals": [
+    {
+      "company": "SpaceX",
+      "ticker": "SPCX",
+      "status": "prices 2026-06-11, trades 2026-06-12",
+      "ipo_date": "2026-06-12",
+      "target_price_usd": 135.0,
+      "target_valuation_usd": 1750000000000,
+      "cik": "1181412",
+      "raise_usd": null,
+      "day1_return_pct": null,
+      "one_yr_return_pct": null,
+      "return_to_date_pct": null,
+      "verified": false,
+      "source_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1181412",
+      "conflict_note": null,
+      "as_of": "2026-06-10"
+    },
+    {
+      "company": "Anthropic",
+      "ticker": null,
+      "status": "confidential S-1 filed 2026-06-01",
+      "ipo_date": null,
+      "target_price_usd": null,
+      "target_valuation_usd": null,
+      "cik": null,
+      "raise_usd": null,
+      "day1_return_pct": null,
+      "one_yr_return_pct": null,
+      "return_to_date_pct": null,
+      "verified": false,
+      "source_url": "https://efts.sec.gov/LATEST/search-index?q=%22Anthropic%22&forms=S-1",
+      "conflict_note": null,
+      "as_of": "2026-06-10"
+    },
+    {
+      "company": "OpenAI",
+      "ticker": null,
+      "status": "confidential S-1 filed 2026-06-08",
+      "ipo_date": null,
+      "target_price_usd": null,
+      "target_valuation_usd": null,
+      "cik": null,
+      "raise_usd": null,
+      "day1_return_pct": null,
+      "one_yr_return_pct": null,
+      "return_to_date_pct": null,
+      "verified": false,
+      "source_url": "https://efts.sec.gov/LATEST/search-index?q=%22OpenAI%22&forms=S-1",
+      "conflict_note": null,
+      "as_of": "2026-06-10"
+    }
+  ],
+  "mega_ipos": [],
+  "tech_comps": [],
+  "cohorts": []
+}
