@@ -62,7 +62,9 @@
 <div id="mega-table"></div>
 
 <h2>R3 · Day-1 pop vs 1-yr return <span style="color:var(--dim);font-weight:400">(point size = raise)</span></h2>
+<div id="conflict9" style="font-size:12px;color:var(--warn);margin:-4px 0 8px"></div>
 <div class="chartbox"><canvas id="scatter"></canvas></div>
+<div id="tech-table" style="margin-top:12px"></div>
 
 <h2>R4 · Cohort stats</h2>
 <div class="panel" id="cohorts"></div>
@@ -175,6 +177,12 @@ async function load(p) {
   }
   renderTable();
 
+  // table-level conflict #9 banner (unverified ~1yr seeds)
+  const anyUnverified = (comps?.tech_comps ?? []).some(r => r.one_yr_return_pct != null && !r.verified);
+  if (comps?._meta?.conflict_9_table_note)
+    document.getElementById('conflict9').textContent =
+      '⚠ ' + comps._meta.conflict_9_table_note + (anyUnverified ? '' : ' (all shown figures are now verified ✓)');
+
   // R3 scatter
   const pts = mega.concat(comps?.tech_comps ?? [])
     .filter(r => r.day1_return_pct != null && r.one_yr_return_pct != null);
@@ -196,6 +204,23 @@ async function load(p) {
   } else {
     ctx3.parentElement.innerHTML = `<span class="na">No scatter points — needs day-1 and 1-yr figures from the findings doc + price ETL.</span>`;
   }
+
+  // R3 tech comps table
+  const tech = comps?.tech_comps ?? [];
+  document.getElementById('tech-table').innerHTML = tech.length
+    ? `<table><thead><tr><th>Company</th><th>IPO date</th><th>IPO val</th><th>Raise</th>
+        <th>Rev at IPO</th><th>Profit?</th><th>P/S</th><th>Day-1 %</th><th>1-yr %</th><th>To-date %</th><th>Jun 2026</th></tr></thead><tbody>` +
+      tech.map(r => `<tr>
+        <td>${r.company}${conflict(r.conflict_note)}${srcLink(r.source_url)}</td>
+        <td>${r.ipo_date ?? NA}</td><td>${fmtUsd(r.ipo_valuation_usd)}</td><td>${fmtUsd(r.raise_usd)}</td>
+        <td>${fmtUsd(r.revenue_at_ipo_usd)}</td>
+        <td>${r.profitable_at_ipo === true ? 'Yes' : r.profitable_at_ipo === false ? 'No' : (r.profitability_note ?? NA)}</td>
+        <td>${r.ps_multiple != null ? '~' + r.ps_multiple + 'x' : (r.ps_multiple_note ?? NA)}</td>
+        <td>${r.day1_return_pct != null ? r.day1_return_pct + '%' : NA}</td>
+        <td>${r.one_yr_return_pct != null ? r.one_yr_return_pct.toFixed(1) + '%' + (r.verified ? ' ✓' : ' ~') : NA}</td>
+        <td>${r.return_to_date_pct != null ? r.return_to_date_pct.toFixed(1) + '%' : NA}</td>
+        <td>${r.jun_2026_note ?? NA}</td></tr>`).join('') + `</tbody></table>`
+    : `<p>${NA}</p>`;
 
   // R4 cohorts
   const co = comps?.cohorts ?? [];

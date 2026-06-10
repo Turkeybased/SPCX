@@ -142,10 +142,14 @@ def main():
             p = prices[tk]
             seed_1yr = rec.get("one_yr_return_pct")
             comp_1yr = p["one_yr_return_pct"]
-            if (seed_1yr is not None and comp_1yr is not None and seed_1yr != 0
-                    and abs(comp_1yr - seed_1yr) / abs(seed_1yr) > DIVERGENCE_LIMIT):
+            diverges = (seed_1yr is not None and comp_1yr is not None and seed_1yr != 0
+                        and abs(comp_1yr - seed_1yr) / abs(seed_1yr) > DIVERGENCE_LIMIT)
+            if diverges and rec.get("verified"):
+                # already-verified figure moving >20% = data bug, not news
                 divergences.append((tk, seed_1yr, comp_1yr))
                 continue
+            # unverified seeds (findings-doc conflict #9) are approximations meant
+            # to be replaced; overwrite but surface material changes in the report
             if seed_1yr != comp_1yr:
                 changed.append((tk, seed_1yr, comp_1yr))
             rec["one_yr_return_pct"] = comp_1yr
