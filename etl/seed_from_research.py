@@ -1,0 +1,215 @@
+"""One-shot seeder: rebuild comps.json tech_comps/deals/cohorts from the v2
+research drop (docs/research/). mega_ipos are preserved from the current file.
+
+This is a curation tool, not part of the daily ETL - run manually when the
+research dataset is re-issued.
+"""
+
+import csv
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+COMPS = ROOT / "data" / "comps.json"
+CSV = ROOT / "docs" / "research" / "comps.csv"
+FINDINGS = "/docs/research/03-research-findings.md"
+AS_OF = "2026-06-10"
+
+EDGAR_424B4 = {
+    "GOOGL": "https://www.sec.gov/Archives/edgar/data/1288776/000119312504143377/d424b4.htm",
+    "META": "https://www.sec.gov/Archives/edgar/data/1326801/000119312512240111/d287954d424b4.htm",
+    "BABA": "https://www.sec.gov/Archives/edgar/data/1577552/000119312514347620/d709111d424b4.htm",
+    "V": "https://www.sec.gov/Archives/edgar/data/1403161/000119312508060989/d424b4.htm",
+    "SNOW": "https://www.sec.gov/Archives/edgar/data/1640147/000162828020013667/snowflake424b4.htm",
+    "COIN": "https://www.sec.gov/Archives/edgar/data/1679788/000162828021003168/coinbaseglobalincs-1.htm",
+    "CRWV": "https://www.sec.gov/Archives/edgar/data/1769628/000119312525067651/d899798d424b4.htm",
+}
+
+CONFLICTS = {
+    "CRWV": "(#1) IPO year: Mar 2025 (CNBC, authoritative) vs 'Mar 2026' in two 2026 articles (errors).",
+    "CBRS": "Offer price ~$155 is the midpoint of the $150-$160 range; exact final price pending 424B4 (findings v2 sec.7.4).",
+}
+
+
+def f(v):
+    v = (v or "").strip()
+    if v in ("", "<365d"):
+        return None
+    return float(v)
+
+
+def tech_comps():
+    out = []
+    for r in csv.DictReader(open(CSV, encoding="utf-8-sig")):
+        tk = r["ticker"]
+        mktcap = f(r["implied_mktcap_at_ipo_b"])
+        rev = f(r["ttm_revenue_at_ipo_b"])
+        one_yr = f(r["return_plus365d"])
+        rec = {
+            "company": r["company"],
+            "ticker": tk,
+            "ipo_date": r["ipo_date"],
+            "offer_price_usd": f(r["offer_price"]),
+            "day1_close_usd": f(r["day1_close"]),
+            "ipo_valuation_usd": mktcap * 1e9 if mktcap else None,
+            "raise_usd": f(r["raise_b"]) * 1e9 if f(r["raise_b"]) is not None else None,
+            "revenue_at_ipo_usd": rev * 1e9 if rev is not None else None,
+            "profitable_at_ipo": {"YES": True, "NO": False}.get(r["gaap_profitable_at_ipo"]),
+            "ps_multiple": round(mktcap / rev, 1) if (mktcap and rev) else None,
+            "ps_multiple_note": "derived: implied mktcap at IPO / TTM revenue (WP-4 CSV basis)" if (mktcap and rev) else ("n/m (~zero revenue)" if rev == 0 else None),
+            "day1_return_pct": round(f(r["day1_return"]) * 100, 1),
+            "one_yr_return_pct": round(one_yr * 100, 1) if one_yr is not None else None,
+            "return_basis": "vs offer price (split-adjusted); Coinbase vs Nasdaq reference price (DPO)",
+            "verified": True,
+            "note": r["notes"] or None,
+            "source_url": EDGAR_424B4.get(tk, FINDINGS),
+            "conflict_note": CONFLICTS.get(tk),
+            "as_of": AS_OF,
+        }
+        out.append(rec)
+    return out
+
+
+def deals():
+    return [
+        {
+            "company": "SpaceX", "ticker": "SPCX", "exchange": "Nasdaq (and Nasdaq Texas)",
+            "status": "S-1 public May 20 (conf. Apr 1); S-1/A#2 Jun 3 set $135; prices 2026-06-11, trades 2026-06-12",
+            "ipo_date": "2026-06-12",
+            "offer_price_usd": 135.0,
+            "shares_offered": 555555555,
+            "greenshoe_shares": 83333333,
+            "target_valuation_usd": 1750000000000,
+            "valuation_note": "$1.75T and $1.77T both correct per S-1: pre- vs post-pending-acquisition (EchoStar spectrum, Cursor) share counts (findings v2 sec.1.2)",
+            "raise_usd": 75000000000,
+            "raise_with_greenshoe_usd": 85700000000,
+            "revenue_usd": 18670000000, "revenue_period": "FY2025 (+33% YoY, post-xAI consolidation)",
+            "net_income_usd": -4940000000, "net_income_note": "2025 net loss -$4.94B; Q1 2026 -$4.28B; accumulated deficit -$41.3B; 2025 EBITDA $6.58B",
+            "profitable": False,
+            "ps_multiple": 94, "ps_multiple_note": "derived ~94-107x 2025 revenue at offer",
+            "segment_detail": "Starlink $11.4B rev (61%); xAI rev $3.20B 2025, op loss -$6.35B (verified vs S-1; $6.4B = media rounding), xAI capex $12.7B (~61% of SpaceX total); pre-merger core generated ~$8B op profit",
+            "governance": "Musk voting power 82.4% base / 82.3% post-greenshoe (S-1/A#2 primary); Class B 10 votes/sh; controlled company under Nasdaq rules",
+            "lockup": "Staggered: 20% unlocks at first quarterly earnings, +7% at 70/90/105/120/135 days; Musk 366-day hold",
+            "order_book": "~$250B total demand, 3.5-4x oversubscribed (Reuters/Eastern Herald); Bloomberg TV cited ~2x - conflict noted; retail ~30% (~$22.5B)",
+            "valuation_anchors": [
+                {"analyst": "Morningstar (Owens)", "value_usd": 780000000000, "per_share": 63, "vs_ipo": "-53%", "method": "DCF + probability-weighted AI scenarios", "date": "2026-06-08"},
+                {"analyst": "Damodaran (post-prospectus)", "value_usd": 1300000000000, "per_share": 100, "vs_ipo": "-26%", "method": "SOTP DCF, $1.25-1.35T range", "date": "2026-06-04"},
+                {"analyst": "IPO pricing", "value_usd": 1770000000000, "per_share": 135, "vs_ipo": "-", "method": "bookbuild", "date": "2026-06-11"}
+            ],
+            "private_ladder": "$400B/$212 (Jul 2025 tender) -> $800B/$421 pre-split (Dec 2025 tender; resolved - X post claiming $135/$250B is erroneous) -> $1.25T (Feb 2026 xAI merger) -> ~$1.5T (Apr 2026) -> $1.75-1.77T IPO",
+            "gray_market": "Hyperliquid perp ~$157 (~+16% vs offer) Jun 10, off May peak $216-230; Polymarket consensus first close ~$175 (~$2.3T), 75% prob close >$135",
+            "cik": "1181412",
+            "day1_return_pct": None, "one_yr_return_pct": None, "return_to_date_pct": None,
+            "verified": False,
+            "source_url": "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/documents/clients/SPCXLV/SPCXLVred.pdf",
+            "conflict_note": "(#2 RESOLVED) Musk voting = 82.4% per S-1/A#2; '79%' unsourced, BitMEX '85%' uncorroborated. (#3 RESOLVED) Dec 2025 tender = $421/sh at ~$800B (Reuters/Bloomberg/Fortune). (#4) Starlink $4.4B op profit vs $7.2B segment EBITDA are different metrics - do not conflate. (OPEN) Order book: ~2x (Bloomberg TV) vs 3.5-4x (Reuters) oversubscription.",
+            "as_of": AS_OF,
+        },
+        {
+            "company": "Anthropic", "ticker": None, "exchange": None,
+            "status": "confidential S-1 filed 2026-06-01 (Anthropic PBC); public S-1 ~Summer-Fall; target window ~Oct 2026",
+            "ipo_date": None, "offer_price_usd": None,
+            "target_valuation_usd": 965000000000,
+            "valuation_basis": "Series H $65B at $965B post-money, May 28 2026 (Altimeter, Dragoneer, Greenoaks, Sequoia; $15B of $65B previously committed hyperscaler money)",
+            "raise_usd": None, "raise_note": "TBD; FutureSearch median post-IPO mktcap $1.05T (p10 $750B / p90 $1.6T)",
+            "revenue_usd": 47000000000, "revenue_period": "ARR May 2026 ($14B Feb 2026, ~$30B Apr 2026; Q1 2026 GAAP quarterly $4.8B; Claude Code ~$8B ARR)",
+            "profitable": None,
+            "profitability_note": "first operating profit ~$559M projected Q2 2026 (operating, not GAAP net, excl. frontier training capex); 2026 FY cash flow ~-$11B to -$14B; break-even ~2028",
+            "ps_multiple": 20.5, "ps_multiple_note": "derived ~21x ARR (FutureSearch: ~10x median 2027 ARR of $93B)",
+            "governance": "Delaware PBC + Long-Term Benefit Trust: Class T stock held by independent trust elects board majority by ~2027; public shareholders will NOT control the board; underwriters Morgan Stanley, Goldman Sachs, JPMorgan",
+            "compute_commitments": "~$382B+ disclosed (AWS >$100B/10yr, Google ~$200B/5yr, Azure $30B, SpaceX Colossus $1.25B/mo to May 2029, Fluidstack $50B, Akamai $1.8B)",
+            "valuation_ladder": "$61.5B (Mar 2025, Series E) -> $183B (Sep 2025, F) -> $380B (Feb 2026, G) -> $965B (May 2026, H) = ~15.7x in ~14 months",
+            "day1_return_pct": None, "one_yr_return_pct": None, "return_to_date_pct": None,
+            "verified": False,
+            "source_url": "https://www.anthropic.com/news/confidential-draft-s1-sec",
+            "conflict_note": "(NEW, v2 sec.2.3) 2025 annual revenue disputed: ~$4.5B (The Information) vs >$5B-to-date (CFO sworn declaration Mar 2026) vs ~$10B (CNBC) - different methodologies (GAAP vs ARR vs cumulative); public S-1 will settle. ARR figures are forward run-rates, not TTM GAAP; gross-vs-net treatment of hyperscaler compute credits unresolved.",
+            "as_of": AS_OF,
+        },
+        {
+            "company": "OpenAI", "ticker": None, "exchange": "Nasdaq or NYSE expected",
+            "status": "confidential S-1 filed 2026-06-08 (OpenAI Group PBC); target ~Q4 2026; 'may be a while' - Altman/Friar at odds on timing",
+            "ipo_date": None, "offer_price_usd": None,
+            "target_valuation_usd": 852000000000,
+            "valuation_basis": "$122B round closed Mar 31 2026 (largest private fundraise ever; Amazon $50B, Nvidia $30B, SoftBank $30B); pre-IPO consensus target $730-850B",
+            "raise_usd": None, "raise_note": "TBD",
+            "revenue_usd": 25000000000, "revenue_period": "ARR Feb 2026 (~$24B ~May 2026; 2025 annual $13B CFO-stated; Q1 2026 GAAP quarterly $5.7B; 2026 target ~$30B)",
+            "profitable": False,
+            "profitability_note": "Q1 2026 non-GAAP operating margin -122% (-$6.95B loss on $5.7B rev); cash-flow positive ~2029-2030; ~900M weekly ChatGPT users, ~50M paying subscribers",
+            "ps_multiple": 34, "ps_multiple_note": "derived ~34x ARR at $852B (~24-28x on 2026 target)",
+            "governance": "OpenAI Foundation (nonprofit) holds 26% and appoints ALL board members; Microsoft ~27% fully diluted + 20% of revenue until AGI certified + IP access to 2032; Altman ~7%; profit caps removed; underwriters Goldman Sachs, Morgan Stanley",
+            "compute_commitments": "~$1.4T over 8 years (Azure primary, Oracle, Amazon, NVIDIA); HSBC projects $207B funding shortfall by 2030 even if revenue targets hit",
+            "valuation_ladder": "$157B (Oct 2024) -> $300B (Mar 2025) -> ~$500B (Oct 2025, PBC conversion) -> $852B (Mar 2026)",
+            "day1_return_pct": None, "one_yr_return_pct": None, "return_to_date_pct": None,
+            "verified": False,
+            "source_url": "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html",
+            "conflict_note": "(#6 RESOLVED) Round closed Mar 31 2026 per OpenAI.com/Bloomberg. (#8, expanded v2 sec.3.4) Loss figures are THREE distinct metrics conflated in media: ~$14B 2026 non-GAAP vs $25-26B GAAP est.; cumulative '$44B' (2023-28, excl. stock comp, older docs) vs '$115B' (cash burn thru 2029, The Information) vs '$143B' (negative FCF 2024-29 incl. capex, Deutsche Bank). 2028 op loss: WSJ $74B vs TechCrunch $85B - both cited, not averaged.",
+            "as_of": AS_OF,
+        },
+    ]
+
+
+def cohorts():
+    return [
+        {
+            "cohort": "Dot-com bubble (1999-2000)",
+            "n_ipos": 856, "mean_day1_return_pct": 64.6,
+            "n_ipos_1999": 476, "mean_day1_1999_pct": 71.2, "mean_day1_2000_pct": 56.4,
+            "avg_day1_1990_98_pct": 14.8,
+            "avg_1yr_return_pct": -11.2,
+            "avg_3yr_bhr_from_close_pct": -53.1, "three_yr_mkt_adj_pct": -31.8,
+            "implied_3yr_bhr_from_offer": "1999: -10.3% / 2000: -37.6% (computed: (1+FDR)x(1+BHR)-1)",
+            "pct_below_offer_at_3yr": "56.1% - 1975-2021 AGGREGATE (Ritter Table 16e), not year-specific; 44.5% for large IPOs (sales >= $100M); 57.0% at +5yr. Year-specific 1999-2000 figure requires IPOALL.xlsx and is likely well above 56%",
+            "money_left_on_table_usd": 66790000000,
+            "note": "1999-2000 market-adjusted -31.8% is the single worst cohort sub-period in the 44-year dataset. Ex-bubble, tech IPOs BEAT style benchmarks (+46.0% 3yr style-adj 1980-2023) - the bubble reverses the sign.",
+            "source_url": "https://site.warrington.ufl.edu/ritter/ipo-data/",
+            "conflict_note": "(#7) 1999 IPO count: 476 (Ritter) vs 457 (definitional).",
+            "as_of": AS_OF,
+        },
+        {
+            "cohort": "2020-21 IPO/SPAC wave",
+            "spac_ipos_2021": 613, "spac_proceeds_2021_usd": 144500000000,
+            "operating_ipos_2021": 311, "mean_day1_2021_pct": 32.1,
+            "despac_avg_1yr_mkt_adj_pct": -49.4, "despac_avg_3yr_mkt_adj_pct": -74.7,
+            "despac_2021_cohort": "N=198: 1yr -64.2%, 3yr -73.0%",
+            "redemption_rate": "68.4% avg 2017-2025 (rose from 11.3% Q1-2021 to ~93-97% by 2023)",
+            "pct_above_offer_by_mar_2023": 5,
+            "pct_above_offer_note": "approximate (~5%) of the 2020-21 IPO/SPAC class (v1 finding; Ritter deSPAC stats above are the primary numbers)",
+            "source_url": "https://site.warrington.ufl.edu/ritter/files/IPOs-SPACs.pdf",
+            "conflict_note": None,
+            "as_of": AS_OF,
+        },
+        {
+            "cohort": "2025-26 AI cohort",
+            "n_ipos_2025": 90, "mean_day1_2025_pct": 29.3,
+            "avg_day1_2025_ex_figma_circle_pct": 8,
+            "money_left_on_table_2025_usd": 13110000000,
+            "note": "Pops concentrated, not broad - unlike 1999. CoreWeave priced below range, flat day-1, +139% to Jun 2026 (-55% off peak; founders sold $2.3B). Figma +250% day-1 then -40% below offer. Cerebras +100.7% day-1 at ~65x sales, 86% UAE revenue concentration. Databricks ~$134B listing pending.",
+            "source_url": "/docs/research/03-research-findings.md",
+            "conflict_note": "Mean 2025 day-1: 29.3% (Ritter, N=90) vs 24% (ION, v1 doc) - different samples/definitions; Ritter shown as primary.",
+            "as_of": AS_OF,
+        },
+    ]
+
+
+def main():
+    comps = json.loads(COMPS.read_text(encoding="utf-8"))
+    comps["deals"] = deals()
+    comps["tech_comps"] = tech_comps()
+    comps["cohorts"] = cohorts()
+    comps["_meta"]["status"] = "SEEDED from docs/research/ v2 drop (2026-06-10)"
+    comps["_meta"]["note"] = ("Historical seed from docs/research/03-research-findings.md (v2) and comps.csv "
+                              "(WP-4, EDGAR 424B4-derived, offer-price return basis). Conflicts #2, #3, #6 resolved in v2; "
+                              "resolutions recorded in conflict_note fields. ETL never modifies seed fields; it only fills "
+                              "etl_writable_fields. tech_comps day-1/+365d returns are vs offer price (verified, WP-4). "
+                              "v1 valuations used a different share-count basis for some names (e.g. Airbnb $47B vs $86.5B "
+                              "implied mktcap) - v2 CSV figures govern.")
+    comps["_meta"]["conflict_9_table_note"] = ("Conflict #9 RESOLVED in v2: tech_comps day-1 and +365d returns are now "
+                                                "offer-price-based from WP-4 (EDGAR 424B4 + finance data), verified. "
+                                                "etl/refresh_prices.py recomputes vs-offer returns daily as a cross-check.")
+    COMPS.write_text(json.dumps(comps, indent=2), encoding="utf-8")
+    print(f"seeded: {len(comps['deals'])} deals, {len(comps['mega_ipos'])} mega, "
+          f"{len(comps['tech_comps'])} tech comps, {len(comps['cohorts'])} cohorts")
+
+
+if __name__ == "__main__":
+    main()

@@ -68,13 +68,16 @@
 
 <h2>R4 · Cohort stats</h2>
 <div class="panel" id="cohorts"></div>
+<h2>R4b · Base rate: mean day-1 IPO return by year, 1980–2025 <span style="color:var(--dim);font-weight:400">(Ritter, U. Florida)</span></h2>
+<div class="chartbox"><canvas id="ritter-chart"></canvas></div>
 
 <script>
 const NA = '<span class="na">n/a — see findings doc</span>';
 const fmt = (v, suf='') => (v === null || v === undefined) ? NA : v.toLocaleString() + suf;
 const fmtUsd = v => (v == null) ? NA :
   (v >= 1e12 ? '$' + (v/1e12).toFixed(2) + 'T' :
-   v >= 1e9  ? '$' + (v/1e9).toFixed(1)  + 'B' : '$' + v.toLocaleString());
+   v >= 1e9  ? '$' + (v/1e9).toFixed(1)  + 'B' :
+   v >= 1e6  ? '$' + (v/1e6).toFixed(0)  + 'M' : '$' + v.toLocaleString());
 const conflict = n => n ? ` <span class="conf" title="${n.replace(/"/g,'&quot;')}">⚠</span>` : '';
 const srcLink = u => u ? ` <a class="src" href="${u}" target="_blank">[src]</a>` : '';
 
@@ -83,9 +86,30 @@ async function load(p) {
   catch { return null; }
 }
 
+// Charts created while the window is hidden/zero-width can get stuck at 0px
+// (resize observer misses the first layout). Keep configs and rebuild any
+// stuck chart once the container has real width.
+const chartCfgs = {};
+function mkChart(id, cfg) {
+  chartCfgs[id] = cfg;
+  return new Chart(document.getElementById(id), cfg);
+}
+function healCharts() {
+  for (const [id, cfg] of Object.entries(chartCfgs)) {
+    const c = document.getElementById(id);
+    if (!c) continue;
+    const stuck = c.getBoundingClientRect().width === 0 &&
+                  c.parentElement.clientWidth > 0;
+    if (stuck) { Chart.getChart(c)?.destroy(); new Chart(c, cfg); }
+  }
+}
+[500, 1500, 4000].forEach(t => setTimeout(healCharts, t));
+window.addEventListener('focus', healCharts);
+
 (async () => {
-  const [comps, prices, filings] = await Promise.all([
-    load('../data/comps.json'), load('../data/prices.json'), load('../data/filing_status.json')]);
+  const [comps, prices, filings, ritter] = await Promise.all([
+    load('../data/comps.json'), load('../data/prices.json'), load('../data/filing_status.json'),
+    load('../data/ritter_cohorts.json')]);
 
   // staleness header
   const stale = [];
@@ -105,9 +129,14 @@ async function load(p) {
     cards.insertAdjacentHTML('beforeend', `<div class="card">
       <div class="co">${d.company}${d.ticker ? ' · ' + d.ticker : ''}${conflict(d.conflict_note)}</div>
       <div class="row"><span>Status</span><span>${d.status ?? NA}</span></div>
-      <div class="row"><span>Target price</span><span>${d.target_price_usd ? '$'+d.target_price_usd : NA}</span></div>
+      <div class="row"><span>Offer price</span><span>${(d.offer_price_usd ?? d.target_price_usd) ? '$'+(d.offer_price_usd ?? d.target_price_usd) : NA}</span></div>
       <div class="row"><span>Target valuation</span><span>${fmtUsd(d.target_valuation_usd)}</span></div>
-      <div class="row"><span>Raise</span><span>${fmtUsd(d.raise_usd)}</span></div>
+      <div class="row"><span>Raise</span><span>${fmtUsd(d.raise_usd)}${d.raise_with_greenshoe_usd ? ' <span style="color:var(--dim)">(' + fmtUsd(d.raise_with_greenshoe_usd) + ' w/ shoe)</span>' : ''}</span></div>
+      <div class="row"><span>Revenue</span><span>${d.revenue_usd ? fmtUsd(d.revenue_usd) + ' <span style="color:var(--dim)">' + (d.revenue_period ?? '') + '</span>' : NA}</span></div>
+      <div class="row"><span>P/S</span><span>${d.ps_multiple ? '~' + d.ps_multiple + 'x' : NA}</span></div>
+      ${d.valuation_anchors ? `<div class="row"><span>Anchors</span><span>` +
+        d.valuation_anchors.map(a => `<span title="${a.method} (${a.date})">${a.analyst.split(' ')[0]}: ${fmtUsd(a.value_usd)} (${a.vs_ipo})</span>`).join('<br>') + `</span></div>` : ''}
+      ${d.governance ? `<div class="row"><span>Governance</span><span style="max-width:65%;text-align:right">${d.governance.split(';')[0]}</span></div>` : ''}
       <div class="row"><span>Source</span><span>${srcLink(d.source_url) || NA}</span></div>
     </div>`);
   }
@@ -130,7 +159,7 @@ async function load(p) {
   const series = prices?.prices?.SPCX?.series;
   const ctx5 = document.getElementById('spcx-chart');
   if (series?.length) {
-    new Chart(ctx5, { type:'line', data:{
+    mkChart('spcx-chart', { type:'line', data:{
       labels: series.map(p => p.date),
       datasets:[
         { label:'SPCX close', data: series.map(p => p.close), borderColor:'#4da3ff', pointRadius:0, tension:.2 },
@@ -188,7 +217,7 @@ async function load(p) {
     .filter(r => r.day1_return_pct != null && r.one_yr_return_pct != null);
   const ctx3 = document.getElementById('scatter');
   if (pts.length) {
-    new Chart(ctx3, { type:'bubble', data:{ datasets:[{
+    mkChart('scatter', { type:'bubble', data:{ datasets:[{
       label:'IPO comps',
       data: pts.map(r => ({ x:r.day1_return_pct, y:r.one_yr_return_pct,
         r: r.raise_usd ? Math.max(4, Math.sqrt(r.raise_usd/1e9)*3) : 5, meta:r })),
@@ -205,21 +234,23 @@ async function load(p) {
     ctx3.parentElement.innerHTML = `<span class="na">No scatter points — needs day-1 and 1-yr figures from the findings doc + price ETL.</span>`;
   }
 
-  // R3 tech comps table
+  // R3 tech comps table (returns vs offer price per WP-4)
   const tech = comps?.tech_comps ?? [];
   document.getElementById('tech-table').innerHTML = tech.length
-    ? `<table><thead><tr><th>Company</th><th>IPO date</th><th>IPO val</th><th>Raise</th>
-        <th>Rev at IPO</th><th>Profit?</th><th>P/S</th><th>Day-1 %</th><th>1-yr %</th><th>To-date %</th><th>Jun 2026</th></tr></thead><tbody>` +
+    ? `<table><thead><tr><th>Company</th><th>IPO date</th><th>Offer $</th><th>IPO val</th><th>Raise</th>
+        <th>Rev at IPO</th><th>Profit?</th><th>P/S</th><th>Day-1 %</th><th>+365d %</th><th>To-date %</th></tr></thead><tbody>` +
       tech.map(r => `<tr>
-        <td>${r.company}${conflict(r.conflict_note)}${srcLink(r.source_url)}</td>
-        <td>${r.ipo_date ?? NA}</td><td>${fmtUsd(r.ipo_valuation_usd)}</td><td>${fmtUsd(r.raise_usd)}</td>
+        <td>${r.company}${conflict(r.conflict_note)}${srcLink(r.source_url)}${r.note ? ` <span class="src" style="color:var(--dim)" title="${(r.note||'').replace(/"/g,'&quot;')}">ⓘ</span>` : ''}</td>
+        <td>${r.ipo_date ?? NA}</td>
+        <td>${r.offer_price_usd != null ? '$' + r.offer_price_usd : NA}</td>
+        <td>${fmtUsd(r.ipo_valuation_usd)}</td><td>${fmtUsd(r.raise_usd)}</td>
         <td>${fmtUsd(r.revenue_at_ipo_usd)}</td>
         <td>${r.profitable_at_ipo === true ? 'Yes' : r.profitable_at_ipo === false ? 'No' : (r.profitability_note ?? NA)}</td>
         <td>${r.ps_multiple != null ? '~' + r.ps_multiple + 'x' : (r.ps_multiple_note ?? NA)}</td>
         <td>${r.day1_return_pct != null ? r.day1_return_pct + '%' : NA}</td>
         <td>${r.one_yr_return_pct != null ? r.one_yr_return_pct.toFixed(1) + '%' + (r.verified ? ' ✓' : ' ~') : NA}</td>
-        <td>${r.return_to_date_pct != null ? r.return_to_date_pct.toFixed(1) + '%' : NA}</td>
-        <td>${r.jun_2026_note ?? NA}</td></tr>`).join('') + `</tbody></table>`
+        <td>${r.return_to_date_pct != null ? r.return_to_date_pct.toFixed(1) + '%' : NA}</td></tr>`).join('') +
+      `</tbody></table><p style="color:var(--dim);font-size:11px;margin:6px 0 0">Returns vs (split-adjusted) offer price; Coinbase vs Nasdaq DPO reference price. ✓ = verified (424B4 / price data).</p>`
     : `<p>${NA}</p>`;
 
   // R4 cohorts
@@ -230,6 +261,30 @@ async function load(p) {
         <span>${Object.entries(c).filter(([k]) => !['cohort','name','source_url','conflict_note','as_of'].includes(k))
           .map(([k,v]) => `${k}: ${v ?? 'n/a'}`).join(' · ')}</span></div>`).join('')
     : NA + ' — cohort panel empty until findings doc is transcribed.';
+
+  // R4b Ritter base-rate chart
+  const ry = ritter?.years ?? [];
+  const ctx4 = document.getElementById('ritter-chart');
+  if (ry.length) {
+    const bubble = y => (y.year === 1999 || y.year === 2000) ? '#ff6b6b'
+                      : (y.year === 2021 || y.year === 2025) ? '#ffb454' : 'rgba(77,163,255,.65)';
+    mkChart('ritter-chart', { type:'bar', data:{
+      labels: ry.map(y => y.year),
+      datasets:[{ label:'Mean first-day return %', data: ry.map(y => +(y.mean_fdr_ew*100).toFixed(1)),
+                  backgroundColor: ry.map(bubble) }]},
+      options:{ maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label: c => {
+          const y = ry[c.dataIndex];
+          return `${y.year}: mean day-1 ${(y.mean_fdr_ew*100).toFixed(1)}% · N=${y.n_ipos}` +
+                 (y.avg_1yr_return != null ? ` · avg 1-yr ${(y.avg_1yr_return*100).toFixed(1)}%` : '') +
+                 (y.avg_3yr_bhr_from_close != null ? ` · 3-yr BHR ${(y.avg_3yr_bhr_from_close*100).toFixed(1)}%` : ''); }}}},
+        scales:{ x:{ticks:{color:'#8a94a3',maxRotation:90,autoSkip:true}},
+                 y:{title:{display:true,text:'mean day-1 %',color:'#8a94a3'},ticks:{color:'#8a94a3'}} }}});
+    ctx4.parentElement.insertAdjacentHTML('afterend',
+      `<p style="color:var(--dim);font-size:11px;margin:6px 0 0">Red = dot-com bubble (1999–2000, mean +64.6%, 3-yr BHR −53.1%). Amber = 2021 SPAC-wave peak and 2025 AI cohort. 1980–2025 all-years mean: 19.0%. <a class="src" href="https://site.warrington.ufl.edu/ritter/ipo-data/" target="_blank">[src]</a></p>`);
+  } else {
+    ctx4.parentElement.innerHTML = `<span class="na">ritter_cohorts.json not found — run the research seeder.</span>`;
+  }
 })();
 </script>
 </body>

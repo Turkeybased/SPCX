@@ -56,14 +56,15 @@ def compute_for_ticker(ticker, ipo_date_str):
         first_open = float(opens.iloc[0])
         day1 = pct(first_open, first_close)
 
-    # +365d return: close nearest to first trading day + 365d (only if a full
-    # year has elapsed).
+    # close nearest to first trading day + 365d (only if a full year elapsed)
+    close_plus_365 = None
     one_yr = None
     target = first_date + timedelta(days=365)
     if last_date >= target:
         after = closes[closes.index.date >= target]
         if not after.empty:
-            one_yr = pct(first_close, float(after.iloc[0]))
+            close_plus_365 = float(after.iloc[0])
+            one_yr = pct(first_close, close_plus_365)
 
     to_date = pct(first_close, last_close)
 
@@ -72,6 +73,7 @@ def compute_for_ticker(ticker, ipo_date_str):
         "first_trade_date": first_date.isoformat(),
         "first_open": round(float(opens.iloc[0]), 4) if not opens.empty else None,
         "first_close": round(first_close, 4),
+        "close_plus_365": round(close_plus_365, 4) if close_plus_365 else None,
         "last_close": round(last_close, 4),
         "last_close_date": last_date.isoformat(),
         "day1_return_pct": day1,
@@ -140,8 +142,19 @@ def main():
             if not tk or tk not in prices or prices[tk].get("status") != "ok":
                 continue
             p = prices[tk]
+            # offer-based returns when the seed carries an offer price (the
+            # WP-4 convention: split-adjusted offer; yfinance is split-adjusted
+            # too, so the bases match). Fall back to first-close basis.
+            offer = rec.get("offer_price_usd")
+            if offer:
+                comp_1yr = pct(offer, p["close_plus_365"]) if p.get("close_plus_365") else None
+                comp_to_date = pct(offer, p["last_close"])
+                comp_day1 = pct(offer, p["first_close"])
+            else:
+                comp_1yr = p["one_yr_return_pct"]
+                comp_to_date = p["return_to_date_pct"]
+                comp_day1 = p["day1_return_pct"]
             seed_1yr = rec.get("one_yr_return_pct")
-            comp_1yr = p["one_yr_return_pct"]
             diverges = (seed_1yr is not None and comp_1yr is not None and seed_1yr != 0
                         and abs(comp_1yr - seed_1yr) / abs(seed_1yr) > DIVERGENCE_LIMIT)
             if diverges and rec.get("verified"):
@@ -152,10 +165,11 @@ def main():
             # to be replaced; overwrite but surface material changes in the report
             if seed_1yr != comp_1yr:
                 changed.append((tk, seed_1yr, comp_1yr))
-            rec["one_yr_return_pct"] = comp_1yr
-            if p["day1_return_pct"] is not None and rec.get("day1_return_pct") is None:
-                rec["day1_return_pct"] = p["day1_return_pct"]
-            rec["return_to_date_pct"] = p["return_to_date_pct"]
+            if comp_1yr is not None or seed_1yr is None:
+                rec["one_yr_return_pct"] = comp_1yr if comp_1yr is not None else seed_1yr
+            if comp_day1 is not None and rec.get("day1_return_pct") is None:
+                rec["day1_return_pct"] = comp_day1
+            rec["return_to_date_pct"] = comp_to_date
             rec["last_price"] = p["last_close"]
             rec["last_price_as_of"] = p["last_close_date"]
             rec["verified"] = True

@@ -1,20 +1,25 @@
 # Session Report: 2026-06-10-scaffold-ipo-context-dashboard-etl-empty
-**Project:** ipo-context-dashboard  **Branch:** master  **Commits:** 2
+**Project:** ipo-context-dashboard  **Branch:** master  **Commits:** 3
 
 ## File diff summary
 ```
- .claude/launch.json           |  11 +++
- .github/workflows/refresh.yml |  25 +++++
- .gitignore                    |   4 +
- README.md                     |  62 +++++++++++++
- data/comps.json               |  74 +++++++++++++++
- data/filing_status.json       |  39 ++++++++
- data/prices.json              |  20 ++++
- etl/edgar_watch.py            | 118 +++++++++++++++++++++++
- etl/refresh_prices.py         | 174 ++++++++++++++++++++++++++++++++++
- etl/run_all.py                |  22 +++++
- site/index.html               | 211 ++++++++++++++++++++++++++++++++++++++++++
- 11 files changed, 760 insertions(+)
+ .claude/launch.json                                |  11 +
+ .github/workflows/refresh.yml                      |  25 +
+ .gitignore                                         |   4 +
+ README.md                                          |  62 ++
+ data/comps.json                                    | 636 +++++++++++++++++++++
+ data/filing_status.json                            |  39 ++
+ data/prices.json                                   | 306 ++++++++++
+ docs/01-ipo-dashboard-spec.md                      |  92 +++
+ docs/02-research-plan-for-llms.md                  |  69 +++
+ docs/03-research-findings.md                       |  88 +++
+ docs/04-claude-code-handoff.md                     |  37 ++
+ etl/edgar_watch.py                                 | 118 ++++
+ etl/refresh_prices.py                              | 178 ++++++
+ etl/run_all.py                                     |  22 +
+ ...-10-scaffold-ipo-context-dashboard-etl-empty.md |  40 ++
+ site/index.html                                    | 236 ++++++++
+ 16 files changed, 1963 insertions(+)
 ```
 
 ## What I built
