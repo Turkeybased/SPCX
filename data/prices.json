@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-10T21:16:09+00:00",
+  "source": "yfinance (Yahoo Finance) daily closes",
+  "tickers_requested": [
+    "SPCX"
+  ],
+  "tickers_failed": [
+    "SPCX"
+  ],
+  "prices": {
+    "SPCX": {
+      "ticker": "SPCX",
+      "status": "no data (not yet trading or unknown ticker)",
+      "day1_return_pct": null,
+      "one_yr_return_pct": null,
+      "return_to_date_pct": null,
+      "last_close": null
+    }
+  }
+}

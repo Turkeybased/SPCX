@@ -1,8 +1,15 @@
 {
   "_meta": {
-    "status": "SEED INCOMPLETE — awaiting 03-research-findings.md",
-    "note": "The historical tables (deals, mega_ipos, tech_comps, cohorts) and the 9 conflict notes from §5 must be transcribed from 03-research-findings.md. That file was not present on this machine at build time. Per project constraints, no historical figure may be fabricated, so the arrays below are empty except for facts supplied directly in the project handoff (the SPCX deal record). The dashboard renders 'n/a — see findings doc' for anything missing. ETL never modifies seed fields; it only fills fields listed in _meta.etl_writable_fields.",
-    "etl_writable_fields": ["day1_return_pct", "one_yr_return_pct", "return_to_date_pct", "verified", "last_price", "last_price_as_of"],
+    "status": "SEED INCOMPLETE \u2014 awaiting 03-research-findings.md",
+    "note": "The historical tables (deals, mega_ipos, tech_comps, cohorts) and the 9 conflict notes from \u00a75 must be transcribed from 03-research-findings.md. That file was not present on this machine at build time. Per project constraints, no historical figure may be fabricated, so the arrays below are empty except for facts supplied directly in the project handoff (the SPCX deal record). The dashboard renders 'n/a \u2014 see findings doc' for anything missing. ETL never modifies seed fields; it only fills fields listed in _meta.etl_writable_fields.",
+    "etl_writable_fields": [
+      "day1_return_pct",
+      "one_yr_return_pct",
+      "return_to_date_pct",
+      "verified",
+      "last_price",
+      "last_price_as_of"
+    ],
     "schema": {
       "record": "{ ...metric_fields, source_url: string, conflict_note: string|null, as_of: 'YYYY-MM-DD' }"
     },
