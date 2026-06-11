@@ -82,7 +82,6 @@ The user (a single individual making personal investing decisions) needs that co
 | Q | Owner | Blocking? |
 |---|---|---|
 | Final SPCX pricing/allocation (June 11) — seed data updates needed day 1 | ETL job | No (designed for) |
-| What does `intelligence-hatchery` repo provide (agents/skills for financial institutions)? Could replace/augment the ETL or research layer | Solo — repo currently inaccessible (404 to connected account) | No — slot in later |
 | Musk voting control: 79% vs >82% — pin from final prospectus | Research pass after pricing | No |
 | Where to host (local vs GitHub Pages vs Vercel)? | Solo | Before build handoff |
 

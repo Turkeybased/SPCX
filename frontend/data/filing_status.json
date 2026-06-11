@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-06-10T23:17:05+00:00",
+  "companies": [
+    {
+      "name": "Anthropic",
+      "confidential_s1_filed": "2026-06-01",
+      "public_s1": null,
+      "status": "confidential (not in full-text search)"
+    },
+    {
+      "name": "OpenAI",
+      "confidential_s1_filed": "2026-06-08",
+      "public_s1": null,
+      "status": "confidential (not in full-text search)"
+    },
+    {
+      "name": "SpaceX",
+      "cik": "1181412",
+      "filings": [
+        {
+          "form": "S-1/A",
+          "filing_date": "2026-06-03",
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/0001628280-26-040364-index.htm"
+        },
+        {
+          "form": "S-1/A",
+          "filing_date": "2026-06-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/0001628280-26-039276-index.htm"
+        },
+        {
+          "form": "S-1",
+          "filing_date": "2026-05-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/0001628280-26-036936-index.htm"
+        }
+      ],
+      "status": "S-1 on EDGAR"
+    }
+  ]
+}
