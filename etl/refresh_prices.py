@@ -39,6 +39,14 @@ def compute_for_ticker(ticker, ipo_date_str):
     hist = t.history(period="max", interval="1d", auto_adjust=False)
     if hist is None or hist.empty:
         return None
+    # Drop leading zero-volume placeholder rows (e.g. SPCX shows a 2026-06-11
+    # "pricing day" row at exactly $135 with no volume; first real session is
+    # 06-12). Only leading rows are dropped so genuine zero-volume days later
+    # in a series are untouched.
+    if "Volume" in hist.columns:
+        nonzero = hist["Volume"].fillna(0) > 0
+        if nonzero.any():
+            hist = hist.loc[nonzero.idxmax():]
     closes = hist["Close"].dropna()
     if closes.empty:
         return None
@@ -110,8 +118,14 @@ def main():
             result["status"] = "ok"
             if tk == "SPCX":
                 # full daily series for the R5 price-vs-$135 line
-                hist = yf.Ticker(tk).history(period="max", interval="1d",
-                                             auto_adjust=False)["Close"].dropna()
+                full = yf.Ticker(tk).history(period="max", interval="1d",
+                                             auto_adjust=False)
+                # same leading zero-volume placeholder trim as compute_for_ticker
+                if "Volume" in full.columns:
+                    nonzero = full["Volume"].fillna(0) > 0
+                    if nonzero.any():
+                        full = full.loc[nonzero.idxmax():]
+                hist = full["Close"].dropna()
                 result["series"] = [
                     {"date": d.date().isoformat(), "close": round(float(c), 4)}
                     for d, c in hist.items()

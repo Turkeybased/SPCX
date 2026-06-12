@@ -48,6 +48,23 @@ them with the repo's `etl/` scripts (e.g. `python etl/run_all.py`) and overwrite
 the files here. The UI re-reads them on load and shows the refresh timestamp in
 the masthead ("TELEMETRY").
 
+### The LIVE · TELEMETRY section (SPCX price line)
+
+The telemetry panel reads `prices.SPCX.series` (the daily `[{date, close}]`
+array that `refresh_prices.py` emits for SPCX). Behaviour is automatic:
+
+- **No series yet** (SPCX not in the feed) → an "Awaiting live price feed" panel
+  that names the last refresh date and the command to run. This is the shipped
+  state until SPCX actually trades and the ETL ingests it.
+- **Series present** → a stat strip (last close, vs-$135, day-1 vs offer,
+  return-to-date, as-of, session count) above a price line charted against the
+  dashed **$135 escape line** — green above the offer, red below.
+
+So to light it up: re-run the ETL so `prices.json` carries `SPCX.series`, and the
+panel switches to the live chart on next load. No code change needed. (If
+yfinance returns nothing for `SPCX`, the listing ticker may differ — point
+`refresh_prices.py` at the real symbol.)
+
 ## Notes
 
 - **Fonts**: Space Grotesk + JetBrains Mono load from Google Fonts (needs

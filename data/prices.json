@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T23:03:37+00:00",
+  "generated_at": "2026-06-12T16:58:54+00:00",
   "source": "yfinance (Yahoo Finance) daily closes",
   "tickers_requested": [
     "1288.HK",
@@ -27,9 +27,7 @@
     "UBER",
     "V"
   ],
-  "tickers_failed": [
-    "SPCX"
-  ],
+  "tickers_failed": [],
   "prices": {
     "1288.HK": {
       "ticker": "1288.HK",
@@ -76,11 +74,11 @@
       "first_open": 29.0909,
       "first_close": 29.0909,
       "close_plus_365": 29.3388,
-      "last_close": 27.06,
-      "last_close_date": "2026-06-10",
+      "last_close": 27.18,
+      "last_close_date": "2026-06-11",
       "day1_return_pct": 0.0,
       "one_yr_return_pct": 0.85,
-      "return_to_date_pct": -6.98,
+      "return_to_date_pct": -6.57,
       "status": "ok"
     },
     "9434.T": {
@@ -102,11 +100,11 @@
       "first_open": 146.0,
       "first_close": 144.71,
       "close_plus_365": 180.42,
-      "last_close": 130.87,
-      "last_close_date": "2026-06-11",
+      "last_close": 131.0,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -0.88,
       "one_yr_return_pct": 24.68,
-      "return_to_date_pct": -9.56,
+      "return_to_date_pct": -9.47,
       "status": "ok"
     },
     "ARM": {
@@ -115,11 +113,11 @@
       "first_open": 56.1,
       "first_close": 63.59,
       "close_plus_365": 147.37,
-      "last_close": 342.23,
-      "last_close_date": "2026-06-11",
+      "last_close": 372.15,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 13.35,
       "one_yr_return_pct": 131.75,
-      "return_to_date_pct": 438.18,
+      "return_to_date_pct": 485.23,
       "status": "ok"
     },
     "BABA": {
@@ -128,11 +126,11 @@
       "first_open": 92.7,
       "first_close": 93.89,
       "close_plus_365": 63.9,
-      "last_close": 112.69,
-      "last_close_date": "2026-06-11",
+      "last_close": 111.825,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 1.28,
       "one_yr_return_pct": -31.94,
-      "return_to_date_pct": 20.02,
+      "return_to_date_pct": 19.1,
       "status": "ok"
     },
     "CBRS": {
@@ -141,11 +139,11 @@
       "first_open": 350.0,
       "first_close": 311.07,
       "close_plus_365": null,
-      "last_close": 226.55,
-      "last_close_date": "2026-06-11",
+      "last_close": 214.045,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -11.12,
       "one_yr_return_pct": null,
-      "return_to_date_pct": -27.17,
+      "return_to_date_pct": -31.19,
       "status": "ok"
     },
     "COIN": {
@@ -154,11 +152,11 @@
       "first_open": 381.0,
       "first_close": 328.28,
       "close_plus_365": 147.29,
-      "last_close": 160.43,
-      "last_close_date": "2026-06-11",
+      "last_close": 160.89,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -13.84,
       "one_yr_return_pct": -55.13,
-      "return_to_date_pct": -51.13,
+      "return_to_date_pct": -50.99,
       "status": "ok"
     },
     "CRCL": {
@@ -167,11 +165,11 @@
       "first_open": 69.0,
       "first_close": 83.23,
       "close_plus_365": 80.28,
-      "last_close": 82.63,
-      "last_close_date": "2026-06-11",
+      "last_close": 79.345,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 20.62,
       "one_yr_return_pct": -3.54,
-      "return_to_date_pct": -0.72,
+      "return_to_date_pct": -4.67,
       "status": "ok"
     },
     "CRWV": {
@@ -180,11 +178,11 @@
       "first_open": 39.0,
       "first_close": 40.0,
       "close_plus_365": 69.15,
-      "last_close": 95.74,
-      "last_close_date": "2026-06-11",
+      "last_close": 104.68,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 2.56,
       "one_yr_return_pct": 72.88,
-      "return_to_date_pct": 139.35,
+      "return_to_date_pct": 161.7,
       "status": "ok"
     },
     "FIG": {
@@ -193,11 +191,11 @@
       "first_open": 85.0,
       "first_close": 115.5,
       "close_plus_365": null,
-      "last_close": 19.34,
-      "last_close_date": "2026-06-11",
+      "last_close": 18.105,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 35.88,
       "one_yr_return_pct": null,
-      "return_to_date_pct": -83.26,
+      "return_to_date_pct": -84.32,
       "status": "ok"
     },
     "GM": {
@@ -206,11 +204,11 @@
       "first_open": 35.0,
       "first_close": 34.19,
       "close_plus_365": 21.68,
-      "last_close": 80.85,
-      "last_close_date": "2026-06-11",
+      "last_close": 81.34,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -2.31,
       "one_yr_return_pct": -36.59,
-      "return_to_date_pct": 136.47,
+      "return_to_date_pct": 137.91,
       "status": "ok"
     },
     "GOOGL": {
@@ -219,11 +217,11 @@
       "first_open": 2.5025,
       "first_close": 2.511,
       "close_plus_365": 7.007,
-      "last_close": 357.77,
-      "last_close_date": "2026-06-11",
+      "last_close": 361.68,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 0.34,
       "one_yr_return_pct": 179.05,
-      "return_to_date_pct": 14148.05,
+      "return_to_date_pct": 14303.76,
       "status": "ok"
     },
     "LYFT": {
@@ -232,11 +230,11 @@
       "first_open": 87.33,
       "first_close": 78.29,
       "close_plus_365": 26.92,
-      "last_close": 13.71,
-      "last_close_date": "2026-06-11",
+      "last_close": 13.595,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -10.35,
       "one_yr_return_pct": -65.62,
-      "return_to_date_pct": -82.49,
+      "return_to_date_pct": -82.64,
       "status": "ok"
     },
     "META": {
@@ -245,11 +243,11 @@
       "first_open": 42.05,
       "first_close": 38.23,
       "close_plus_365": 25.76,
-      "last_close": 568.43,
-      "last_close_date": "2026-06-11",
+      "last_close": 570.4,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -9.08,
       "one_yr_return_pct": -32.62,
-      "return_to_date_pct": 1386.87,
+      "return_to_date_pct": 1392.02,
       "status": "ok"
     },
     "RDDT": {
@@ -258,11 +256,11 @@
       "first_open": 47.0,
       "first_close": 50.44,
       "close_plus_365": 115.7,
-      "last_close": 173.26,
-      "last_close_date": "2026-06-11",
+      "last_close": 164.115,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 7.32,
       "one_yr_return_pct": 129.38,
-      "return_to_date_pct": 243.5,
+      "return_to_date_pct": 225.37,
       "status": "ok"
     },
     "RIVN": {
@@ -271,11 +269,11 @@
       "first_open": 106.75,
       "first_close": 100.73,
       "close_plus_365": 32.96,
-      "last_close": 15.54,
-      "last_close_date": "2026-06-11",
+      "last_close": 16.21,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -5.64,
       "one_yr_return_pct": -67.28,
-      "return_to_date_pct": -84.57,
+      "return_to_date_pct": -83.91,
       "status": "ok"
     },
     "SNAP": {
@@ -284,11 +282,11 @@
       "first_open": 24.0,
       "first_close": 24.48,
       "close_plus_365": 18.01,
-      "last_close": 5.33,
-      "last_close_date": "2026-06-11",
+      "last_close": 5.248,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 2.0,
       "one_yr_return_pct": -26.43,
-      "return_to_date_pct": -78.23,
+      "return_to_date_pct": -78.56,
       "status": "ok"
     },
     "SNOW": {
@@ -297,20 +295,31 @@
       "first_open": 245.0,
       "first_close": 253.93,
       "close_plus_365": 323.52,
-      "last_close": 240.39,
-      "last_close_date": "2026-06-11",
+      "last_close": 235.4,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": 3.64,
       "one_yr_return_pct": 27.41,
-      "return_to_date_pct": -5.33,
+      "return_to_date_pct": -7.3,
       "status": "ok"
     },
     "SPCX": {
       "ticker": "SPCX",
-      "status": "no data (not yet trading or unknown ticker)",
-      "day1_return_pct": null,
+      "first_trade_date": "2026-06-12",
+      "first_open": 150.0,
+      "first_close": 173.615,
+      "close_plus_365": null,
+      "last_close": 173.615,
+      "last_close_date": "2026-06-12",
+      "day1_return_pct": 15.74,
       "one_yr_return_pct": null,
-      "return_to_date_pct": null,
-      "last_close": null
+      "return_to_date_pct": 0.0,
+      "status": "ok",
+      "series": [
+        {
+          "date": "2026-06-12",
+          "close": 173.615
+        }
+      ]
     },
     "UBER": {
       "ticker": "UBER",
@@ -318,11 +327,11 @@
       "first_open": 42.0,
       "first_close": 41.57,
       "close_plus_365": 31.64,
-      "last_close": 69.55,
-      "last_close_date": "2026-06-11",
+      "last_close": 68.0801,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -1.02,
       "one_yr_return_pct": -23.89,
-      "return_to_date_pct": 67.31,
+      "return_to_date_pct": 63.77,
       "status": "ok"
     },
     "V": {
@@ -331,11 +340,11 @@
       "first_open": 14.875,
       "first_close": 14.125,
       "close_plus_365": 13.1725,
-      "last_close": 319.05,
-      "last_close_date": "2026-06-11",
+      "last_close": 323.665,
+      "last_close_date": "2026-06-12",
       "day1_return_pct": -5.04,
       "one_yr_return_pct": -6.74,
-      "return_to_date_pct": 2158.76,
+      "return_to_date_pct": 2191.43,
       "status": "ok"
     }
   }

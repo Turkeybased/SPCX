@@ -13,6 +13,8 @@ Paste everything below into Claude Code, run from `C:\Users\solom\Projects\ipo-c
 
 ## Task
 
+0. Sanity-check the ETL runs clean on this machine (it was edited from a sandbox; line endings may need normalizing): `pip install yfinance` if needed, then `python etl/refresh_prices.py`. Expect "24 tickers, 0 failed" and `data/prices.json` containing an SPCX `series` whose FIRST entry is dated `2026-06-12` (not 06-11 — that placeholder row is a bug the script now filters). If it errors or the series starts 06-11, stop and report.
+   Then copy refreshed data into the served folder: `copy data\*.json frontend\data\` (Windows) before committing.
 1. `git status` — check if this folder is already a git repo. If not: `git init -b main`.
 2. Ensure `.gitignore` excludes `session-reports/` and `.claude/`. Add those lines if missing.
 3. Stage and commit everything else (frontend/, data/, etl/, docs/, vercel.json, README.md, .github/workflows/refresh.yml). Message: `Add IPO context dashboard: frontend, data, ETL, docs`.
@@ -27,6 +29,7 @@ Paste everything below into Claude Code, run from `C:\Users\solom\Projects\ipo-c
 - The production URL Vercel prints (https://….vercel.app).
 - Whether `vercel git connect` succeeded (yes/no + any message).
 - Confirm `.github/workflows/refresh.yml` made it to GitHub (it will, with local git — the connector limitation doesn't apply).
+- Open the deployed URL and confirm the LIVE · TELEMETRY section shows an SPCX price (not "Awaiting live price feed") — that's the proof the new frontend + fresh data both shipped.
 
 ## Constraints
 
