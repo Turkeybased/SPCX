@@ -88,7 +88,7 @@
             <!-- LIVE public-market price (dynamic, clamped) -->
             <sc-if value="{{ spcxLive }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;left:148px;bottom:{{ spcxLive.gaugeY }}%;width:17px;height:17px;border-radius:50%;background:#05060a;border:3px solid #ffd089;transform:translate(-50%,50%);box-shadow:0 0 16px #ffd089;z-index:4;"></div>
-            <div style="position:absolute;left:174px;bottom:{{ spcxLive.gaugeY }}%;transform:translateY(50%);z-index:4;"><div style="font-size:22px;font-weight:700;color:#ffd089;line-height:1;text-shadow:0 0 14px rgba(255,208,137,.5);">{{ spcxLive.cur }} <span style="font:600 9px 'JetBrains Mono',monospace;letter-spacing:.12em;color:#caa46a;">LIVE</span></div><div style="font:500 10px 'JetBrains Mono',monospace;color:#caa46a;margin-top:3px;">public market</div></div>
+            <div style="position:absolute;left:0;width:138px;text-align:right;bottom:{{ spcxLive.gaugeY }}%;transform:translateY(50%);z-index:4;"><div style="font-size:22px;font-weight:700;color:#ffd089;line-height:1;text-shadow:0 0 14px rgba(255,208,137,.5);">{{ spcxLive.cur }} <span style="font:600 9px 'JetBrains Mono',monospace;letter-spacing:.12em;color:#caa46a;">LIVE</span></div><div style="font:500 10px 'JetBrains Mono',monospace;color:#caa46a;margin-top:3px;">public market</div></div>
             </sc-if>
           </div>
 
@@ -97,7 +97,7 @@
             <sc-if value="{{ spcxLive }}" hint-placeholder-val="{{ false }}">
             <div style="background:rgba(255,122,24,.06);border:1px solid #3a2410;border-left:3px solid #ff7a18;border-radius:10px;padding:16px 18px;">
               <div style="font:600 11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#ff9d4d;">GRAVITY GAP · WIDENING</div>
-              <div style="font-size:15px;line-height:1.55;color:#cdd6ea;margin-top:8px;">Three sessions in, SPCX trades near <b style="color:#ffd089;">{{ spcxLive.curWhole }}</b> — <b style="color:#ff7a18;">{{ spcxLive.vsOfferWhole }} above its own $135 offer</b> and <b style="color:#ff7a18;">{{ spcxLive.xMorningstar }} Morningstar's $63 fair value</b> (~<b style="color:#ff7a18;">{{ spcxLive.mktCap }}</b> market cap). The public market is now the highest mark of all — every independent valuation sits far below the tape. Three green days don't reprice xAI's −$6.35B operating loss.</div>
+              <div style="font-size:15px;line-height:1.55;color:#cdd6ea;margin-top:8px;">{{ spcxLive.leadPhrase }}, SPCX trades near <b style="color:#ffd089;">{{ spcxLive.curWhole }}</b> — <b style="color:#ff7a18;">{{ spcxLive.vsOfferWhole }} above its own $135 offer</b> and <b style="color:#ff7a18;">{{ spcxLive.xMorningstar }} Morningstar's $63 fair value</b> (~<b style="color:#ff7a18;">{{ spcxLive.mktCap }}</b> market cap). The public market is now the highest mark of all — every independent valuation sits far below the tape. Green days don't reprice xAI's −$6.35B operating loss.</div>
             </div>
             </sc-if>
             <sc-if value="{{ spcxAwaiting }}" hint-placeholder-val="{{ true }}">
@@ -150,7 +150,7 @@
             <div style="margin-left:auto;text-align:right;">
               <div style="font:500 11px 'JetBrains Mono',monospace;letter-spacing:.08em;color:#6f7a93;">AS OF</div>
               <div style="font:600 14px 'JetBrains Mono',monospace;color:#aab4c8;margin-top:3px;">{{ spcxLive.asOf }}</div>
-              <div style="font:500 11px 'JetBrains Mono',monospace;color:#586379;margin-top:2px;">{{ spcxLive.days }} sessions</div>
+              <div style="font:500 11px 'JetBrains Mono',monospace;color:#586379;margin-top:2px;">{{ spcxLive.daysLabel }}</div>
             </div>
           </div>
           <!-- line chart -->
@@ -700,6 +700,13 @@ class Component extends DCLogic {
         day1: sgn(r2((firstClose - OFFER) / OFFER * 100)),
         toDate: sp.return_to_date_pct != null ? sgn(sp.return_to_date_pct) : '—',
         asOf, days: n,
+        daysLabel: n + (n === 1 ? ' session' : ' sessions'),
+        leadPhrase: (() => {
+          const w = ['zero', 'one', 'two', 'three', 'four', 'five', 'six',
+            'seven', 'eight', 'nine', 'ten'][n] || String(n);
+          return n === 1 ? 'In its first session'
+            : (w.charAt(0).toUpperCase() + w.slice(1) + ' sessions in');
+        })(),
         gaugeY: r2(gaugeY),
         curWhole: '$' + Math.round(cur),
         vsOfferWhole: (cur >= OFFER ? '+' : '') + Math.round((cur - OFFER) / OFFER * 100) + '%',
