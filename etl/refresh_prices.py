@@ -27,6 +27,14 @@ ETL_WRITABLE = {"day1_return_pct", "one_yr_return_pct", "return_to_date_pct",
 DIVERGENCE_LIMIT = 0.20  # abort if computed differs from seed by >20%
 
 
+def write_json_atomic(path, obj):
+    """Write JSON via temp file + atomic replace so an interrupted run can
+    never leave a truncated file behind (this happened 2026-06-12)."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(obj, indent=2), encoding="utf-8")
+    tmp.replace(path)
+
+
 def pct(a, b):
     if a is None or b is None or a == 0:
         return None
@@ -144,7 +152,7 @@ def main():
         "tickers_failed": failed,
         "prices": prices,
     }
-    PRICES_PATH.write_text(json.dumps(out, indent=2), encoding="utf-8")
+    write_json_atomic(PRICES_PATH, out)
     print(f"wrote {PRICES_PATH} ({len(tickers)} tickers, {len(failed)} failed)")
 
     # --- write back ONLY verified return fields into comps.json ---
@@ -201,7 +209,7 @@ def main():
             print(f"  {tk}: seed 1yr {seed}% vs computed {comp}%", file=sys.stderr)
         return 1
 
-    COMPS_PATH.write_text(json.dumps(comps, indent=2), encoding="utf-8")
+    write_json_atomic(COMPS_PATH, comps)
     if changed:
         print("verified 1-yr figures that changed vs seed:")
         for tk, seed, comp in changed:

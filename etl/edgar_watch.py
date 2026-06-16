@@ -106,7 +106,9 @@ def main():
         errors += 1
     status["companies"].append(spacex)
 
-    OUT_PATH.write_text(json.dumps(status, indent=2), encoding="utf-8")
+    tmp = OUT_PATH.with_suffix(OUT_PATH.suffix + ".tmp")
+    tmp.write_text(json.dumps(status, indent=2), encoding="utf-8")
+    tmp.replace(OUT_PATH)  # atomic: no truncated JSON if the run is killed
     print(f"wrote {OUT_PATH}")
     if errors:
         print(f"WARNING: {errors} EDGAR request(s) failed — if this repeats, "

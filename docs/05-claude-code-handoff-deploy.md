@@ -10,6 +10,8 @@ Paste everything below into Claude Code, run from `C:\Users\solom\Projects\ipo-c
 - Target repo exists: https://github.com/Turkeybased/SPCX — public, branch `main`, currently contains only `LICENSE` (HEAD `4644b09`).
 - `vercel.json` already at project root with `"outputDirectory": "frontend"` so Vercel serves the dashboard with zero config.
 - Cowork's GitHub connector is read-only (403 on writes), so the push happens here with my own credentials.
+- **Why an existing deploy looks stale:** a Vercel deployment freezes whatever `frontend/data/*.json` existed at deploy time. If SPCX was deployed before it began trading (or before the placeholder-row fix), the live deploy shows "Awaiting close price". The page does NOT fetch new prices on reload — only a redeploy with fresh data updates it. This handoff redeploys with current data and (step 7) wires the daily auto-refresh so it stays current at each market close.
+- **Model is daily-at-close, not real-time.** The telemetry section is labeled "DAILY TELEMETRY · AT CLOSE". yfinance gives delayed/EOD quotes; the GitHub Action refreshes once per day. That is by design.
 
 ## Task
 
@@ -21,7 +23,8 @@ Paste everything below into Claude Code, run from `C:\Users\solom\Projects\ipo-c
 4. `git remote add origin https://github.com/Turkeybased/SPCX.git` (or set-url if origin exists).
 5. `git pull origin main --rebase --allow-unrelated-histories` (the repo has a LICENSE commit we want to keep), then `git push -u origin main`.
 6. Deploy: `npx vercel@latest deploy --prod` from project root. Log in as prompted (GitHub auth is fine). Accept defaults; project name `spcx-dashboard` or similar.
-7. After deploy, also link the GitHub repo in Vercel for auto-redeploys: `npx vercel git connect` (or note that I can do it in the Vercel dashboard → Project → Settings → Git).
+7. After deploy, link the GitHub repo in Vercel so each data commit auto-redeploys: `npx vercel git connect` (or Vercel dashboard → Project → Settings → Git). THIS IS WHAT KEEPS THE DEPLOYED PRICE CURRENT — without it, the daily Action commits new data to GitHub but Vercel never rebuilds, so the live site stays frozen.
+8. Confirm the daily refresh works end-to-end: check `.github/workflows/refresh.yml` has a `schedule:` cron and that it commits changed `data/*.json` back to the repo (it should also `copy data/*.json frontend/data/`). Trigger it once manually (GitHub → Actions → Run workflow) and confirm it produces a commit and a Vercel redeploy. If the Action lacks permission to push commits, set repo Settings → Actions → Workflow permissions to "Read and write".
 
 ## Expected output back to me
 
@@ -29,7 +32,8 @@ Paste everything below into Claude Code, run from `C:\Users\solom\Projects\ipo-c
 - The production URL Vercel prints (https://….vercel.app).
 - Whether `vercel git connect` succeeded (yes/no + any message).
 - Confirm `.github/workflows/refresh.yml` made it to GitHub (it will, with local git — the connector limitation doesn't apply).
-- Open the deployed URL and confirm the LIVE · TELEMETRY section shows an SPCX price (not "Awaiting live price feed") — that's the proof the new frontend + fresh data both shipped.
+- Open the deployed URL and confirm the DAILY TELEMETRY · AT CLOSE section (now positioned directly under Q1 · ASCENT) shows an SPCX price (not "Awaiting close price") — that's the proof the new frontend + fresh data both shipped.
+- Confirm the manual Action run produced a new commit and Vercel redeployed (paste the redeploy URL or note "git connect not done").
 
 ## Constraints
 
