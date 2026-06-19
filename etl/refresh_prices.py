@@ -13,6 +13,7 @@ report instead of writing (likely a data bug, not news).
 
 import json
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -25,6 +26,28 @@ PRICES_PATH = ROOT / "data" / "prices.json"
 ETL_WRITABLE = {"day1_return_pct", "one_yr_return_pct", "return_to_date_pct",
                 "verified", "last_price", "last_price_as_of"}
 DIVERGENCE_LIMIT = 0.20  # abort if computed differs from seed by >20%
+
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF = (1, 2, 4)  # seconds before each retry; Yahoo is flakiest for
+                          # newly-listed names (SPCX first trade 2026-06-12)
+
+
+def history_with_retry(ticker, **kwargs):
+    """yf.Ticker(ticker).history(**kwargs) with up to RETRY_ATTEMPTS tries and
+    exponential backoff. Absorbs transient yfinance/Yahoo blips; the final
+    failure propagates to the caller's per-ticker handling."""
+    last_exc = None
+    for attempt in range(RETRY_ATTEMPTS):
+        try:
+            return yf.Ticker(ticker).history(**kwargs)
+        except Exception as exc:
+            last_exc = exc
+            if attempt < RETRY_ATTEMPTS - 1:
+                wait = RETRY_BACKOFF[attempt]
+                print(f"  {ticker}: history() failed ({exc}); retrying in {wait}s "
+                      f"({attempt + 1}/{RETRY_ATTEMPTS})", file=sys.stderr)
+                time.sleep(wait)
+    raise last_exc
 
 
 def write_json_atomic(path, obj):
@@ -43,8 +66,7 @@ def pct(a, b):
 
 def compute_for_ticker(ticker, ipo_date_str):
     """Return dict of closes + returns, or None if yfinance has no data."""
-    t = yf.Ticker(ticker)
-    hist = t.history(period="max", interval="1d", auto_adjust=False)
+    hist = history_with_retry(ticker, period="max", interval="1d", auto_adjust=False)
     if hist is None or hist.empty:
         return None
     # Drop leading zero-volume placeholder rows (e.g. SPCX shows a 2026-06-11
@@ -125,19 +147,26 @@ def main():
         else:
             result["status"] = "ok"
             if tk == "SPCX":
-                # full daily series for the R5 price-vs-$135 line
-                full = yf.Ticker(tk).history(period="max", interval="1d",
-                                             auto_adjust=False)
-                # same leading zero-volume placeholder trim as compute_for_ticker
-                if "Volume" in full.columns:
-                    nonzero = full["Volume"].fillna(0) > 0
-                    if nonzero.any():
-                        full = full.loc[nonzero.idxmax():]
-                hist = full["Close"].dropna()
-                result["series"] = [
-                    {"date": d.date().isoformat(), "close": round(float(c), 4)}
-                    for d, c in hist.items()
-                ]
+                # full daily series for the R5 price-vs-$135 line. Wrapped in
+                # its own try/except: a yfinance error fetching the series must
+                # NOT crash the whole refresh — we just skip the series and keep
+                # the (already-computed) returns for SPCX.
+                try:
+                    full = history_with_retry(tk, period="max", interval="1d",
+                                              auto_adjust=False)
+                    # same leading zero-volume placeholder trim as compute_for_ticker
+                    if "Volume" in full.columns:
+                        nonzero = full["Volume"].fillna(0) > 0
+                        if nonzero.any():
+                            full = full.loc[nonzero.idxmax():]
+                    hist = full["Close"].dropna()
+                    result["series"] = [
+                        {"date": d.date().isoformat(), "close": round(float(c), 4)}
+                        for d, c in hist.items()
+                    ]
+                except Exception as exc:
+                    print(f"  {tk}: series fetch failed, skipping series: {exc}",
+                          file=sys.stderr)
             prices[tk] = result
 
     # SPCX not trading until 2026-06-12 — null is expected before then.

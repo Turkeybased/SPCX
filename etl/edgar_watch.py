@@ -23,6 +23,28 @@ HEADERS = {"User-Agent": "solo solomon.foshko@gmail.com"}
 FTS_URL = "https://efts.sec.gov/LATEST/search-index"
 SUBMISSIONS_URL = "https://data.sec.gov/submissions/CIK{cik:0>10}.json"
 
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF = (1, 2, 4)  # seconds before each retry; SEC EDGAR 403/429/503s automated traffic
+
+
+def get_with_retry(url, **kwargs):
+    """GET with up to RETRY_ATTEMPTS tries and exponential backoff. Only the
+    final failure propagates; transient SEC 403/429/503 blips are absorbed."""
+    last_exc = None
+    for attempt in range(RETRY_ATTEMPTS):
+        try:
+            resp = requests.get(url, **kwargs)
+            resp.raise_for_status()
+            return resp
+        except Exception as exc:  # network error or non-2xx status
+            last_exc = exc
+            if attempt < RETRY_ATTEMPTS - 1:
+                wait = RETRY_BACKOFF[attempt]
+                print(f"  request to {url} failed ({exc}); retrying in {wait}s "
+                      f"({attempt + 1}/{RETRY_ATTEMPTS})", file=sys.stderr)
+                time.sleep(wait)
+    raise last_exc
+
 WATCHES = [
     {"name": "Anthropic", "query": '"Anthropic"', "forms": "S-1,S-1/A",
      "confidential_filed": "2026-06-01"},
@@ -33,16 +55,14 @@ SPACEX_CIK = 1181412
 
 
 def fts_search(query, forms):
-    resp = requests.get(FTS_URL, params={"q": query, "forms": forms},
-                        headers=HEADERS, timeout=30)
-    resp.raise_for_status()
+    resp = get_with_retry(FTS_URL, params={"q": query, "forms": forms},
+                          headers=HEADERS, timeout=30)
     return resp.json()
 
 
 def spacex_filings():
-    resp = requests.get(SUBMISSIONS_URL.format(cik=SPACEX_CIK),
-                        headers=HEADERS, timeout=30)
-    resp.raise_for_status()
+    resp = get_with_retry(SUBMISSIONS_URL.format(cik=SPACEX_CIK),
+                          headers=HEADERS, timeout=30)
     data = resp.json()
     recent = data.get("filings", {}).get("recent", {})
     forms = recent.get("form", [])
@@ -63,6 +83,7 @@ def main():
     status = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
               "companies": []}
     errors = 0
+    total_watches = len(WATCHES) + 1  # +1 for the SpaceX submissions check
 
     for w in WATCHES:
         entry = {"name": w["name"], "confidential_s1_filed": w["confidential_filed"],
@@ -111,9 +132,16 @@ def main():
     tmp.replace(OUT_PATH)  # atomic: no truncated JSON if the run is killed
     print(f"wrote {OUT_PATH}")
     if errors:
-        print(f"WARNING: {errors} EDGAR request(s) failed — if this repeats, "
-              "stop and report.", file=sys.stderr)
-    return 0 if errors == 0 else 1
+        print(f"WARNING: {errors}/{total_watches} EDGAR watch(es) failed after "
+              "retries — if this repeats, stop and report.", file=sys.stderr)
+    # Only fail the daily refresh if EVERY watch failed (likely SEC-wide
+    # outage / block). A single failed watch is downgraded to a logged
+    # warning + exit 0 so one EDGAR blip doesn't block the price refresh and
+    # the day's data commit.
+    if errors >= total_watches:
+        print("ERROR: all EDGAR watches failed — failing the step.", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
