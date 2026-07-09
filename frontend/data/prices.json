@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T22:31:03+00:00",
+  "generated_at": "2026-07-09T22:47:48+00:00",
   "source": "yfinance (Yahoo Finance) daily closes",
   "tickers_requested": [
     "1288.HK",
@@ -35,11 +35,11 @@
       "first_open": 3.25,
       "first_close": 3.27,
       "close_plus_365": 4.06,
-      "last_close": 5.65,
-      "last_close_date": "2026-07-08",
+      "last_close": 5.49,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 0.62,
       "one_yr_return_pct": 24.16,
-      "return_to_date_pct": 72.78,
+      "return_to_date_pct": 67.89,
       "status": "ok"
     },
     "1299.HK": {
@@ -48,11 +48,11 @@
       "first_open": 23.15,
       "first_close": 23.05,
       "close_plus_365": 24.1,
-      "last_close": 73.7,
-      "last_close_date": "2026-07-08",
+      "last_close": 72.3,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -0.43,
       "one_yr_return_pct": 4.56,
-      "return_to_date_pct": 219.74,
+      "return_to_date_pct": 213.67,
       "status": "ok"
     },
     "1398.HK": {
@@ -61,11 +61,11 @@
       "first_open": 3.532,
       "first_close": 3.4535,
       "close_plus_365": 7.1228,
-      "last_close": 6.82,
-      "last_close_date": "2026-07-08",
+      "last_close": 6.65,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -2.22,
       "one_yr_return_pct": 106.25,
-      "return_to_date_pct": 97.48,
+      "return_to_date_pct": 92.56,
       "status": "ok"
     },
     "2222.SR": {
@@ -74,11 +74,11 @@
       "first_open": 29.0909,
       "first_close": 29.0909,
       "close_plus_365": 29.3388,
-      "last_close": 26.16,
-      "last_close_date": "2026-07-07",
+      "last_close": 26.84,
+      "last_close_date": "2026-07-08",
       "day1_return_pct": 0.0,
       "one_yr_return_pct": 0.85,
-      "return_to_date_pct": -10.07,
+      "return_to_date_pct": -7.74,
       "status": "ok"
     },
     "9434.T": {
@@ -87,11 +87,11 @@
       "first_open": 146.3,
       "first_close": 128.2,
       "close_plus_365": 143.55,
-      "last_close": 213.1,
-      "last_close_date": "2026-07-08",
+      "last_close": 214.4,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -12.37,
       "one_yr_return_pct": 11.97,
-      "return_to_date_pct": 66.22,
+      "return_to_date_pct": 67.24,
       "status": "ok"
     },
     "ABNB": {
@@ -100,11 +100,11 @@
       "first_open": 146.0,
       "first_close": 144.71,
       "close_plus_365": 180.42,
-      "last_close": 142.95,
-      "last_close_date": "2026-07-08",
+      "last_close": 146.89,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -0.88,
       "one_yr_return_pct": 24.68,
-      "return_to_date_pct": -1.22,
+      "return_to_date_pct": 1.51,
       "status": "ok"
     },
     "ARM": {
@@ -113,11 +113,11 @@
       "first_open": 56.1,
       "first_close": 63.59,
       "close_plus_365": 147.37,
-      "last_close": 300.24,
-      "last_close_date": "2026-07-08",
+      "last_close": 327.87,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 13.35,
       "one_yr_return_pct": 131.75,
-      "return_to_date_pct": 372.15,
+      "return_to_date_pct": 415.6,
       "status": "ok"
     },
     "BABA": {
@@ -126,11 +126,11 @@
       "first_open": 92.7,
       "first_close": 93.89,
       "close_plus_365": 63.9,
-      "last_close": 108.98,
-      "last_close_date": "2026-07-08",
+      "last_close": 111.14,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 1.28,
       "one_yr_return_pct": -31.94,
-      "return_to_date_pct": 16.07,
+      "return_to_date_pct": 18.37,
       "status": "ok"
     },
     "CBRS": {
@@ -139,11 +139,11 @@
       "first_open": 350.0,
       "first_close": 311.07,
       "close_plus_365": null,
-      "last_close": 181.72,
-      "last_close_date": "2026-07-08",
+      "last_close": 198.53,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -11.12,
       "one_yr_return_pct": null,
-      "return_to_date_pct": -41.58,
+      "return_to_date_pct": -36.18,
       "status": "ok"
     },
     "COIN": {
@@ -152,11 +152,11 @@
       "first_open": 381.0,
       "first_close": 328.28,
       "close_plus_365": 147.29,
-      "last_close": 159.36,
-      "last_close_date": "2026-07-08",
+      "last_close": 158.44,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -13.84,
       "one_yr_return_pct": -55.13,
-      "return_to_date_pct": -51.46,
+      "return_to_date_pct": -51.74,
       "status": "ok"
     },
     "CRCL": {
@@ -165,11 +165,11 @@
       "first_open": 69.0,
       "first_close": 83.23,
       "close_plus_365": 80.28,
-      "last_close": 64.07,
-      "last_close_date": "2026-07-08",
+      "last_close": 63.01,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 20.62,
       "one_yr_return_pct": -3.54,
-      "return_to_date_pct": -23.02,
+      "return_to_date_pct": -24.29,
       "status": "ok"
     },
     "CRWV": {
@@ -178,11 +178,11 @@
       "first_open": 39.0,
       "first_close": 40.0,
       "close_plus_365": 69.15,
-      "last_close": 90.0,
-      "last_close_date": "2026-07-08",
+      "last_close": 89.7,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 2.56,
       "one_yr_return_pct": 72.88,
-      "return_to_date_pct": 125.0,
+      "return_to_date_pct": 124.25,
       "status": "ok"
     },
     "FIG": {
@@ -191,11 +191,11 @@
       "first_open": 85.0,
       "first_close": 115.5,
       "close_plus_365": null,
-      "last_close": 21.67,
-      "last_close_date": "2026-07-08",
+      "last_close": 22.26,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 35.88,
       "one_yr_return_pct": null,
-      "return_to_date_pct": -81.24,
+      "return_to_date_pct": -80.73,
       "status": "ok"
     },
     "GM": {
@@ -204,11 +204,11 @@
       "first_open": 35.0,
       "first_close": 34.19,
       "close_plus_365": 21.68,
-      "last_close": 76.24,
-      "last_close_date": "2026-07-08",
+      "last_close": 76.65,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -2.31,
       "one_yr_return_pct": -36.59,
-      "return_to_date_pct": 122.99,
+      "return_to_date_pct": 124.19,
       "status": "ok"
     },
     "GOOGL": {
@@ -217,11 +217,11 @@
       "first_open": 2.5025,
       "first_close": 2.511,
       "close_plus_365": 7.007,
-      "last_close": 361.92,
-      "last_close_date": "2026-07-08",
+      "last_close": 358.89,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 0.34,
       "one_yr_return_pct": 179.05,
-      "return_to_date_pct": 14313.32,
+      "return_to_date_pct": 14192.65,
       "status": "ok"
     },
     "LYFT": {
@@ -230,11 +230,11 @@
       "first_open": 87.33,
       "first_close": 78.29,
       "close_plus_365": 26.92,
-      "last_close": 15.17,
-      "last_close_date": "2026-07-08",
+      "last_close": 15.74,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -10.35,
       "one_yr_return_pct": -65.62,
-      "return_to_date_pct": -80.62,
+      "return_to_date_pct": -79.9,
       "status": "ok"
     },
     "META": {
@@ -243,11 +243,11 @@
       "first_open": 42.05,
       "first_close": 38.23,
       "close_plus_365": 25.76,
-      "last_close": 603.12,
-      "last_close_date": "2026-07-08",
+      "last_close": 631.48,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -9.08,
       "one_yr_return_pct": -32.62,
-      "return_to_date_pct": 1477.61,
+      "return_to_date_pct": 1551.79,
       "status": "ok"
     },
     "RDDT": {
@@ -256,11 +256,11 @@
       "first_open": 47.0,
       "first_close": 50.44,
       "close_plus_365": 115.7,
-      "last_close": 195.31,
-      "last_close_date": "2026-07-08",
+      "last_close": 200.31,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 7.32,
       "one_yr_return_pct": 129.38,
-      "return_to_date_pct": 287.21,
+      "return_to_date_pct": 297.13,
       "status": "ok"
     },
     "RIVN": {
@@ -269,11 +269,11 @@
       "first_open": 106.75,
       "first_close": 100.73,
       "close_plus_365": 32.96,
-      "last_close": 16.66,
-      "last_close_date": "2026-07-08",
+      "last_close": 18.12,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -5.64,
       "one_yr_return_pct": -67.28,
-      "return_to_date_pct": -83.46,
+      "return_to_date_pct": -82.01,
       "status": "ok"
     },
     "SNAP": {
@@ -282,11 +282,11 @@
       "first_open": 24.0,
       "first_close": 24.48,
       "close_plus_365": 18.01,
-      "last_close": 4.63,
-      "last_close_date": "2026-07-08",
+      "last_close": 4.7,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 2.0,
       "one_yr_return_pct": -26.43,
-      "return_to_date_pct": -81.09,
+      "return_to_date_pct": -80.8,
       "status": "ok"
     },
     "SNOW": {
@@ -295,11 +295,11 @@
       "first_open": 245.0,
       "first_close": 253.93,
       "close_plus_365": 323.52,
-      "last_close": 261.31,
-      "last_close_date": "2026-07-08",
+      "last_close": 267.49,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 3.64,
       "one_yr_return_pct": 27.41,
-      "return_to_date_pct": 2.91,
+      "return_to_date_pct": 5.34,
       "status": "ok"
     },
     "SPCX": {
@@ -308,11 +308,11 @@
       "first_open": 150.0,
       "first_close": 160.95,
       "close_plus_365": null,
-      "last_close": 148.3,
-      "last_close_date": "2026-07-08",
+      "last_close": 152.16,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": 7.3,
       "one_yr_return_pct": null,
-      "return_to_date_pct": -7.86,
+      "return_to_date_pct": -5.46,
       "status": "ok",
       "series": [
         {
@@ -382,6 +382,10 @@
         {
           "date": "2026-07-08",
           "close": 148.3
+        },
+        {
+          "date": "2026-07-09",
+          "close": 152.16
         }
       ]
     },
@@ -391,11 +395,11 @@
       "first_open": 42.0,
       "first_close": 41.57,
       "close_plus_365": 31.64,
-      "last_close": 73.6,
-      "last_close_date": "2026-07-08",
+      "last_close": 74.35,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -1.02,
       "one_yr_return_pct": -23.89,
-      "return_to_date_pct": 77.05,
+      "return_to_date_pct": 78.85,
       "status": "ok"
     },
     "V": {
@@ -404,11 +408,11 @@
       "first_open": 14.875,
       "first_close": 14.125,
       "close_plus_365": 13.1725,
-      "last_close": 347.53,
-      "last_close_date": "2026-07-08",
+      "last_close": 348.2,
+      "last_close_date": "2026-07-09",
       "day1_return_pct": -5.04,
       "one_yr_return_pct": -6.74,
-      "return_to_date_pct": 2360.39,
+      "return_to_date_pct": 2365.13,
       "status": "ok"
     }
   }
