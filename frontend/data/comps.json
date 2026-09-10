@@ -72,13 +72,13 @@
       "cik": "1181412",
       "day1_return_pct": 0.0,
       "one_yr_return_pct": null,
-      "return_to_date_pct": 9.3,
+      "return_to_date_pct": 9.76,
       "verified": true,
       "source_url": "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/documents/clients/SPCXLV/SPCXLVred.pdf",
       "conflict_note": "(#2 RESOLVED) Musk voting = 82.4% per S-1/A#2; '79%' unsourced, BitMEX '85%' uncorroborated. (#3 RESOLVED) Dec 2025 tender = $421/sh at ~$800B (Reuters/Bloomberg/Fortune). (#4) Starlink $4.4B op profit vs $7.2B segment EBITDA are different metrics - do not conflate. (OPEN) Order book: ~2x (Bloomberg TV) vs 3.5-4x (Reuters) oversubscription.",
       "as_of": "2026-06-10",
-      "last_price": 147.55,
-      "last_price_as_of": "2026-09-09",
+      "last_price": 148.18,
+      "last_price_as_of": "2026-09-10",
       "status_src": "https://www.npr.org/2026/06/11/nx-s1-5853199/spacex-ipo-price-elon-musk"
     },
     {
@@ -153,9 +153,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 0.85,
       "day1_return_pct": 0.0,
-      "return_to_date_pct": -10.42,
-      "last_price": 26.06,
-      "last_price_as_of": "2026-09-08",
+      "return_to_date_pct": -10.49,
+      "last_price": 26.04,
+      "last_price_as_of": "2026-09-09",
       "verified": true
     },
     {
@@ -171,9 +171,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 24.16,
       "day1_return_pct": 0.62,
-      "return_to_date_pct": 92.66,
-      "last_price": 6.3,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 95.11,
+      "last_price": 6.38,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -188,9 +188,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 106.25,
       "day1_return_pct": -2.22,
-      "return_to_date_pct": 118.47,
-      "last_price": 7.545,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 120.36,
+      "last_price": 7.61,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -206,9 +206,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -31.94,
       "day1_return_pct": 1.28,
-      "return_to_date_pct": 16.52,
-      "last_price": 109.4,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 15.62,
+      "last_price": 108.56,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -223,9 +223,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 11.97,
       "day1_return_pct": -12.37,
-      "return_to_date_pct": 86.58,
-      "last_price": 239.2,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 89.7,
+      "last_price": 243.2,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -253,9 +253,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -36.59,
       "day1_return_pct": -2.31,
-      "return_to_date_pct": 144.98,
-      "last_price": 83.76,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 151.89,
+      "last_price": 86.12,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -271,9 +271,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -6.74,
       "day1_return_pct": -5.04,
-      "return_to_date_pct": 2500.99,
-      "last_price": 367.39,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 2499.72,
+      "last_price": 367.21,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -289,9 +289,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 4.56,
       "day1_return_pct": -0.43,
-      "return_to_date_pct": 233.84,
-      "last_price": 76.95,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 226.68,
+      "last_price": 75.3,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     },
     {
@@ -306,9 +306,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -32.62,
       "day1_return_pct": -9.08,
-      "return_to_date_pct": 1609.89,
-      "last_price": 653.69,
-      "last_price_as_of": "2026-09-09",
+      "return_to_date_pct": 1585.53,
+      "last_price": 644.38,
+      "last_price_as_of": "2026-09-10",
       "verified": true
     }
   ],
@@ -333,9 +333,9 @@
       "source_url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312504143377/d424b4.htm",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 15460.0,
-      "last_price": 330.65,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 15551.76,
+      "last_price": 332.6,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Facebook",
@@ -357,9 +357,9 @@
       "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312512240111/d287954d424b4.htm",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 1620.24,
-      "last_price": 653.69,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 1595.74,
+      "last_price": 644.38,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Alibaba",
@@ -382,9 +382,9 @@
       "conflict_note": "+365d return: -13.3% (WP-4 CSV, price 58.97) vs -6.0% (yfinance close on/after IPO+365d, 2015-09-21). Likely different anniversary-date convention. Not averaged; CSV figure shown.",
       "as_of": "2026-06-10",
       "one_yr_quarantined": true,
-      "return_to_date_pct": 60.88,
-      "last_price": 109.4,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 59.65,
+      "last_price": 108.56,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Visa",
@@ -407,9 +407,9 @@
       "conflict_note": "+365d return: +45.5% (WP-4 CSV, price 16.00) vs +19.8% (yfinance split-adj close ~13.2 on 2009-03-19). CSV +365d price looks like a later-2009 date - probable WP-4 data error. Not averaged; CSV figure shown pending re-research.",
       "as_of": "2026-06-10",
       "one_yr_quarantined": true,
-      "return_to_date_pct": 3239.91,
-      "last_price": 367.39,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 3238.27,
+      "last_price": 367.21,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Snap",
@@ -432,9 +432,9 @@
       "conflict_note": "+365d return: -6.6% (WP-4 CSV, price 15.87) vs +5.9% (yfinance close ~18.01 on 2018-03-02). Different date convention suspected. Not averaged; CSV figure shown.",
       "as_of": "2026-06-10",
       "one_yr_quarantined": true,
-      "return_to_date_pct": -68.76,
-      "last_price": 5.31,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": -67.53,
+      "last_price": 5.52,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Lyft",
@@ -456,9 +456,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": -79.31,
-      "last_price": 14.9,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": -79.14,
+      "last_price": 15.02,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Uber",
@@ -480,9 +480,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 57.96,
-      "last_price": 71.08,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 61.24,
+      "last_price": 72.56,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Snowflake",
@@ -504,9 +504,9 @@
       "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828020013667/snowflake424b4.htm",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 176.23,
-      "last_price": 331.48,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 174.77,
+      "last_price": 329.72,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Airbnb",
@@ -528,9 +528,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 149.46,
-      "last_price": 169.63,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 146.54,
+      "last_price": 167.65,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Coinbase",
@@ -553,9 +553,9 @@
       "conflict_note": "+365d return: -54.9% (WP-4 CSV, price 112.71) vs -41.1% (yfinance close ~147 on 2022-04-14). CSV price matches May-2022 crash levels, not the April anniversary - probable WP-4 data error. Not averaged; CSV figure shown pending re-research.",
       "as_of": "2026-06-10",
       "one_yr_quarantined": true,
-      "return_to_date_pct": -30.11,
-      "last_price": 174.72,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": -31.09,
+      "last_price": 172.28,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Rivian",
@@ -577,9 +577,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": -79.48,
-      "last_price": 16.005,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": -79.42,
+      "last_price": 16.05,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Arm",
@@ -601,9 +601,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 418.1,
-      "last_price": 264.23,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 398.39,
+      "last_price": 254.18,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Reddit",
@@ -625,9 +625,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 330.71,
-      "last_price": 146.44,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 356.88,
+      "last_price": 155.34,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "CoreWeave",
@@ -650,9 +650,9 @@
       "conflict_note": "(#1) IPO year: Mar 2025 (CNBC, authoritative) vs 'Mar 2026' in two 2026 articles (errors). +365d return: +93.7% (WP-4 CSV, price 77.47) vs +72.9% (yfinance close on/after 2026-03-28). Different date convention suspected. Not averaged; CSV figure shown.",
       "as_of": "2026-06-10",
       "one_yr_quarantined": true,
-      "return_to_date_pct": 137.35,
-      "last_price": 94.94,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 122.8,
+      "last_price": 89.12,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Circle",
@@ -674,9 +674,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 199.97,
-      "last_price": 92.99,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 191.35,
+      "last_price": 90.32,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Figma",
@@ -698,9 +698,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": -33.3,
-      "last_price": 22.01,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": -32.91,
+      "last_price": 22.14,
+      "last_price_as_of": "2026-09-10"
     },
     {
       "company": "Cerebras",
@@ -722,9 +722,9 @@
       "source_url": "/docs/research/03-research-findings.md",
       "conflict_note": "Offer price ~$155 is the midpoint of the $150-$160 range; exact final price pending 424B4 (findings v2 sec.7.4).",
       "as_of": "2026-06-10",
-      "return_to_date_pct": 26.58,
-      "last_price": 196.2,
-      "last_price_as_of": "2026-09-09"
+      "return_to_date_pct": 23.45,
+      "last_price": 191.34,
+      "last_price_as_of": "2026-09-10"
     }
   ],
   "cohorts": [
