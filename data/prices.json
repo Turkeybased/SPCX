@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T23:25:17+00:00",
+  "generated_at": "2026-09-22T00:12:08+00:00",
   "source": "yfinance (Yahoo Finance) daily closes",
   "tickers_requested": [
     "1288.HK",
@@ -35,11 +35,11 @@
       "first_open": 3.25,
       "first_close": 3.27,
       "close_plus_365": 4.06,
-      "last_close": 6.3,
-      "last_close_date": "2026-09-18",
+      "last_close": 6.515,
+      "last_close_date": "2026-09-21",
       "day1_return_pct": 0.62,
       "one_yr_return_pct": 24.16,
-      "return_to_date_pct": 92.66,
+      "return_to_date_pct": 99.24,
       "status": "ok"
     },
     "1299.HK": {
@@ -48,11 +48,11 @@
       "first_open": 23.15,
       "first_close": 23.05,
       "close_plus_365": 24.1,
-      "last_close": 76.75,
-      "last_close_date": "2026-09-18",
+      "last_close": 77.35,
+      "last_close_date": "2026-09-21",
       "day1_return_pct": -0.43,
       "one_yr_return_pct": 4.56,
-      "return_to_date_pct": 232.97,
+      "return_to_date_pct": 235.57,
       "status": "ok"
     },
     "1398.HK": {
@@ -61,11 +61,11 @@
       "first_open": 3.532,
       "first_close": 3.4535,
       "close_plus_365": 7.1228,
-      "last_close": 7.5,
-      "last_close_date": "2026-09-18",
+      "last_close": 7.58,
+      "last_close_date": "2026-09-21",
       "day1_return_pct": -2.22,
       "one_yr_return_pct": 106.25,
-      "return_to_date_pct": 117.17,
+      "return_to_date_pct": 119.49,
       "status": "ok"
     },
     "2222.SR": {
@@ -74,11 +74,11 @@
       "first_open": 29.0909,
       "first_close": 29.0909,
       "close_plus_365": 29.3388,
-      "last_close": 25.68,
-      "last_close_date": "2026-09-16",
+      "last_close": 25.9,
+      "last_close_date": "2026-09-20",
       "day1_return_pct": 0.0,
       "one_yr_return_pct": 0.85,
-      "return_to_date_pct": -11.72,
+      "return_to_date_pct": -10.97,
       "status": "ok"
     },
     "9434.T": {
