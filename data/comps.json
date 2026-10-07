@@ -153,9 +153,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 0.85,
       "day1_return_pct": 0.0,
-      "return_to_date_pct": -12.62,
-      "last_price": 25.42,
-      "last_price_as_of": "2026-10-04",
+      "return_to_date_pct": -12.14,
+      "last_price": 25.56,
+      "last_price_as_of": "2026-10-05",
       "verified": true
     },
     {
@@ -171,8 +171,8 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 24.16,
       "day1_return_pct": 0.62,
-      "return_to_date_pct": 99.39,
-      "last_price": 6.52,
+      "return_to_date_pct": 100.31,
+      "last_price": 6.55,
       "last_price_as_of": "2026-10-06",
       "verified": true
     },
@@ -188,8 +188,8 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 106.25,
       "day1_return_pct": -2.22,
-      "return_to_date_pct": 118.19,
-      "last_price": 7.535,
+      "return_to_date_pct": 119.49,
+      "last_price": 7.58,
       "last_price_as_of": "2026-10-06",
       "verified": true
     },
@@ -223,9 +223,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 11.97,
       "day1_return_pct": -12.37,
-      "return_to_date_pct": 88.3,
-      "last_price": 241.4,
-      "last_price_as_of": "2026-10-06",
+      "return_to_date_pct": 85.96,
+      "last_price": 238.4,
+      "last_price_as_of": "2026-10-07",
       "verified": true
     },
     {
@@ -253,9 +253,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -36.59,
       "day1_return_pct": -2.31,
-      "return_to_date_pct": 134.66,
-      "last_price": 80.23,
-      "last_price_as_of": "2026-10-05",
+      "return_to_date_pct": 139.87,
+      "last_price": 82.01,
+      "last_price_as_of": "2026-10-06",
       "verified": true
     },
     {
@@ -271,9 +271,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -6.74,
       "day1_return_pct": -5.04,
-      "return_to_date_pct": 2517.42,
-      "last_price": 369.71,
-      "last_price_as_of": "2026-10-05",
+      "return_to_date_pct": 2524.0,
+      "last_price": 370.64,
+      "last_price_as_of": "2026-10-06",
       "verified": true
     },
     {
@@ -289,8 +289,8 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 4.56,
       "day1_return_pct": -0.43,
-      "return_to_date_pct": 201.95,
-      "last_price": 69.6,
+      "return_to_date_pct": 198.48,
+      "last_price": 68.8,
       "last_price_as_of": "2026-10-06",
       "verified": true
     },
@@ -333,9 +333,9 @@
       "source_url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312504143377/d424b4.htm",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 16204.47,
-      "last_price": 346.47,
-      "last_price_as_of": "2026-10-05"
+      "return_to_date_pct": 16261.41,
+      "last_price": 347.68,
+      "last_price_as_of": "2026-10-06"
     },
     {
       "company": "Facebook",
@@ -407,9 +407,9 @@
       "conflict_note": "+365d return: +45.5% (WP-4 CSV, price 16.00) vs +19.8% (yfinance split-adj close ~13.2 on 2009-03-19). CSV +365d price looks like a later-2009 date - probable WP-4 data error. Not averaged; CSV figure shown pending re-research.",
       "as_of": "2026-06-10",
       "one_yr_quarantined": true,
-      "return_to_date_pct": 3261.0,
-      "last_price": 369.71,
-      "last_price_as_of": "2026-10-05"
+      "return_to_date_pct": 3269.45,
+      "last_price": 370.64,
+      "last_price_as_of": "2026-10-06"
     },
     {
       "company": "Snap",
