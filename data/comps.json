@@ -153,9 +153,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 0.85,
       "day1_return_pct": 0.0,
-      "return_to_date_pct": -13.1,
-      "last_price": 25.28,
-      "last_price_as_of": "2026-10-15",
+      "return_to_date_pct": -11.31,
+      "last_price": 25.8,
+      "last_price_as_of": "2026-10-18",
       "verified": true
     },
     {
@@ -223,9 +223,9 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": 11.97,
       "day1_return_pct": -12.37,
-      "return_to_date_pct": 90.87,
-      "last_price": 244.7,
-      "last_price_as_of": "2026-10-16",
+      "return_to_date_pct": 91.19,
+      "last_price": 245.1,
+      "last_price_as_of": "2026-10-20",
       "verified": true
     },
     {
@@ -306,8 +306,8 @@
       "as_of": "2026-06-10",
       "one_yr_return_pct": -32.62,
       "day1_return_pct": -9.08,
-      "return_to_date_pct": 1755.41,
-      "last_price": 709.325,
+      "return_to_date_pct": 1755.43,
+      "last_price": 709.33,
       "last_price_as_of": "2026-10-16",
       "verified": true
     }
@@ -357,8 +357,8 @@
       "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312512240111/d287954d424b4.htm",
       "conflict_note": null,
       "as_of": "2026-06-10",
-      "return_to_date_pct": 1766.64,
-      "last_price": 709.325,
+      "return_to_date_pct": 1766.66,
+      "last_price": 709.33,
       "last_price_as_of": "2026-10-16"
     },
     {
