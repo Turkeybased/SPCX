@@ -1,11 +1,16 @@
 {
-  "generated_at": "2026-10-31T00:54:32+00:00",
+  "generated_at": "2026-11-03T02:58:33+00:00",
   "companies": [
     {
       "name": "Anthropic",
       "confidential_s1_filed": "2026-06-01",
-      "public_s1": null,
-      "status": "confidential (not in full-text search)"
+      "public_s1": {
+        "form": "S-1/A",
+        "filing_date": "2026-11-02",
+        "entity": "Anthropic, PBC  (CIK 0002130357)",
+        "url": "https://www.sec.gov/Archives/edgar/data/"
+      },
+      "status": "PUBLIC S-1 ON EDGAR"
     },
     {
       "name": "OpenAI",
