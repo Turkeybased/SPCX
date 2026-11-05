@@ -1,0 +1,151 @@
+{
+  "reviewed_at": "2026-11-05",
+  "coverage_start": "2026-06-11",
+  "coverage_end": "2026-11-05",
+  "coverage_note": "Curated material company, geopolitical and market developments; a starting archive, not an exhaustive news feed. Selection does not establish price causation. No social-media rumor is treated as a completed transaction.",
+  "methodology": "Use the public report date, not a retrospectively disclosed transaction date. Verified after-close news maps to the next available trading session. Unknown publication timing uses the first session on/after the report date and is explicitly flagged. Returns use the prior close through the 1st, 3rd or 5th session, including the mapped session. Benchmark differences are percentage-point price-return differences, not causal or risk-adjusted abnormal returns. Missing future sessions remain pending.",
+  "events": [
+    {
+      "id": "ipo-pricing", "date": "2026-06-11", "timing": "after_close", "category": "Capital", "evidence": "Confirmed",
+      "title": "IPO priced at $135 a share",
+      "summary": "SpaceX fixed its public offer at $135, with trading scheduled for June 12.",
+      "channel": "Establishes the offer-price reference. The initial trading session has no prior public close for a daily event return.",
+      "sources": [{"publisher": "SpaceX", "kind": "Primary", "url": "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX_PricingAnnouncement.pdf"}]
+    },
+    {
+      "id": "ipo-debut", "date": "2026-06-12", "timing": "before_open", "category": "Capital", "evidence": "Confirmed",
+      "title": "SPCX begins public trading",
+      "summary": "June 12 is SpaceX's first public trading day. The $135 offer is separate from the first market purchase price.",
+      "channel": "Price discovery begins; allocation-price returns and first-close returns answer different questions.",
+      "sources": [{"publisher": "SpaceX investor FAQ", "kind": "Primary", "url": "https://ir.spacex.com/faqs-and-contact/"}]
+    },
+    {
+      "id": "cursor-agreement", "date": "2026-06-16", "timing": "unknown", "category": "M&A", "evidence": "Confirmed",
+      "title": "$60B all-stock Cursor acquisition agreed",
+      "summary": "SpaceX agreed to acquire Anysphere, the company behind Cursor, in an all-stock transaction.",
+      "channel": "Adds enterprise software exposure and raises integration and share-dilution questions. Agreement and closing are separate milestones.",
+      "sources": [{"publisher": "Reuters", "kind": "Wire", "url": "https://www.investing.com/news/stock-market-news/spacex-to-buy-cursor-ai-coding-agent-operator-anysphere-for-60-billion-4744289"}]
+    },
+    {
+      "id": "starship-abort", "date": "2026-07-16", "timing": "unknown", "category": "Launches", "evidence": "Confirmed",
+      "title": "Starship Flight 13 attempt aborts before liftoff",
+      "summary": "An automated last-second abort postponed the Starship test while the company investigated.",
+      "channel": "Development reliability and launch cadence may affect expectations for future Starlink and space revenue.",
+      "sources": [{"publisher": "Reuters", "kind": "Wire", "url": "https://www.investing.com/news/stock-market-news/spacex-starship-rocket-aborts-before-liftoff-in-13th-flight-test-attempt-4797258"}]
+    },
+    {
+      "id": "starship-flight13", "date": "2026-07-24", "timing": "after_close", "category": "Launches", "evidence": "Confirmed",
+      "title": "Starship test releases advanced Starlink satellites",
+      "summary": "Flight 13 launched and released 20 Starlink satellites. The launch report was published after the US market closed.",
+      "channel": "A technical milestone relevant to future constellation deployment; commercial economics still require execution.",
+      "sources": [{"publisher": "Associated Press", "kind": "Wire", "url": "https://apnews.com/article/2d1f10bd676c296bc7db5e0c56cb9a4e"}]
+    },
+    {
+      "id": "q2-results", "date": "2026-08-04", "timing": "after_close", "category": "Earnings", "evidence": "Confirmed",
+      "title": "First public earnings report: Q2 results",
+      "summary": "SpaceX reported $7.8B revenue and a $541M net loss; the release also disclosed Starshield awards and compute contracts.",
+      "channel": "Revenue growth, investment demands and contracts arrived together. A daily move cannot isolate one item in the release.",
+      "sources": [
+        {"publisher": "SpaceX / SEC earnings release", "kind": "Primary", "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm"},
+        {"publisher": "Reuters (release timing)", "kind": "Wire", "url": "https://www.investing.com/news/stock-market-news/spacex-quarterly-revenue-surges-in-debut-results-on-strong-growth-in-its-starlink-business-4835745"}
+      ]
+    },
+    {
+      "id": "cursor-closing", "date": "2026-08-14", "timing": "unknown", "category": "M&A", "evidence": "Confirmed",
+      "title": "Cursor announces acquisition completion",
+      "summary": "Cursor said its acquisition by SpaceX had completed. This entry uses the announcement date rather than backdating the disclosure.",
+      "channel": "Moves the transaction from agreement toward integration and operating results; much of the deal may already have been anticipated.",
+      "sources": [{"publisher": "Cursor", "kind": "Primary", "url": "https://prod.cursor.com/blog/joining-spacex"}]
+    },
+    {
+      "id": "louisiana-plan", "date": "2026-08-25", "timing": "unknown", "category": "Capital", "evidence": "Confirmed",
+      "title": "Louisiana spaceport investment plan unveiled",
+      "summary": "Reuters reported a proposed $100B Starship launch complex in southern Louisiana. This is a development plan, not completed expenditure.",
+      "channel": "Potential launch capacity comes with financing, permitting and execution exposure.",
+      "sources": [{"publisher": "Reuters", "kind": "Wire", "url": "https://www.investing.com/news/stock-market-news/spacex-to-build-starship-spaceport-in-louisiana-4875762"}]
+    },
+    {
+      "id": "orbital-test-plan", "date": "2026-09-15", "timing": "unknown", "category": "Launches", "evidence": "Confirmed",
+      "title": "First orbital Starship test targeted for September 22",
+      "summary": "SpaceX set a target for an orbital test intended to deploy Starlink V3 satellites. A target date is not evidence that the flight occurred.",
+      "channel": "Updates the expected timing of a technical milestone and the potential capacity expansion.",
+      "sources": [{"publisher": "Reuters", "kind": "Wire", "url": "https://www.investing.com/news/stock-market-news/spacex-targets-first-starship-orbital-test-on-september-22-4902422"}]
+    },
+    {
+      "id": "grain-spectrum", "date": "2026-10-08", "timing": "unknown", "category": "Deals", "evidence": "Confirmed",
+      "title": "Grain agrees to sell nationwide 800 MHz spectrum",
+      "summary": "Grain announced a definitive agreement to sell its nationwide 800 MHz spectrum portfolio to SpaceX, with regulatory approval still required.",
+      "channel": "Supports a terrestrial mobile-network strategy, with additional buildout and approval requirements.",
+      "sources": [{"publisher": "Grain Management press release", "kind": "Primary", "url": "https://www.prnewswire.com/news-releases/grain-management-announces-definitive-agreement-to-sell-nationwide-800-mhz-spectrum-portfolio-to-spacex-302902974.html"}]
+    },
+    {
+      "id": "starshield-ukraine", "date": "2026-10-15", "event_date": "2026-10-13", "timing": "unknown", "category": "War & policy", "evidence": "Reported / disputed",
+      "title": "Reporting links Ukraine Starshield restrictions to US officials",
+      "summary": "Reuters reported limits on Ukraine's Starshield use and conflicting accounts of who ordered them. The public report date drives the marker.",
+      "channel": "Highlights dependence on government customers and decisions, plus political and reputational exposure. Responsibility remained contested.",
+      "sources": [{"publisher": "Reuters", "kind": "Wire", "url": "https://www.investing.com/news/world-news/exclusiveorder-to-limit-starshield-for-ukraine-came-from-inside-white-house-sources-say-4952816"}]
+    },
+    {
+      "id": "q3-results", "date": "2026-10-20", "timing": "after_close", "category": "Earnings", "evidence": "Confirmed",
+      "title": "Q3 earnings show rapid SI and connectivity growth",
+      "summary": "SpaceX reported $14.6B revenue and $4.4B net income. Its earnings call also brought discussion of a potential Tesla combination.",
+      "channel": "Growth, cash demands and merger discussion overlap in the same observation window; the return cannot be attributed to earnings alone.",
+      "sources": [
+        {"publisher": "SpaceX / SEC earnings release", "kind": "Primary", "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm"},
+        {"publisher": "SpaceX (after-close schedule)", "kind": "Primary", "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Post-Third-Quarter-2026-Results-and-Host-Webcast-on-October-20-2026-2026-QssQGye3im/"}
+      ]
+    },
+    {
+      "id": "tesla-combination", "date": "2026-10-20", "timing": "after_close", "category": "M&A", "evidence": "Confirmed",
+      "title": "Special committee reviews potential Tesla combination",
+      "summary": "SpaceX disclosed a board committee evaluating a possible combination with Tesla. The review is confirmed; a merger agreement or completion is not.",
+      "channel": "Related-party governance, transaction structure and dilution become relevant. Q3 earnings share this event window.",
+      "sources": [{"publisher": "SpaceX Q3 10-Q / SEC", "kind": "Primary", "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm"}]
+    },
+    {
+      "id": "starshield-letter", "date": "2026-10-23", "timing": "unknown", "category": "War & policy", "evidence": "Confirmed",
+      "title": "US lawmakers question Musk on Ukraine connectivity",
+      "summary": "A congressional letter sought answers about reported Starshield restrictions. The letter confirms scrutiny, not the truth of every allegation it cites.",
+      "channel": "Adds oversight and government-relationship considerations to the national-security business.",
+      "sources": [{"publisher": "US House Foreign Affairs Democrats", "kind": "Primary", "url": "https://democrats-foreignaffairs.house.gov/wp-content/uploads/2026/10/2026-10-23-meeks-welch-letter-to-musk-on-starlink.pdf"}]
+    },
+    {
+      "id": "gpu-financing", "date": "2026-10-26", "timing": "unknown", "category": "Capital", "evidence": "Confirmed",
+      "title": "$40B GPU financing announced",
+      "summary": "SpaceX announced GPU financing arrangements with closing conditions and equipment delivery expected in 2027.",
+      "channel": "Could expand compute capacity while increasing long-term financing obligations. Announced financing is distinct from completed deployment.",
+      "sources": [{"publisher": "SpaceX", "kind": "Primary", "url": "https://ir.spacex.com/updates/releases-details/2026/SPACEX-SECURES-40-BILLION-IN-THE-LARGEST-GPU-FINANCING-EVER-2026-EnDqGhTAB3/default.aspx"}]
+    },
+    {
+      "id": "boost-talks", "date": "2026-11-02", "timing": "unknown", "category": "M&A", "evidence": "Reported talks",
+      "title": "Boost Mobile acquisition or network-access talks reported",
+      "summary": "Reuters, citing the Washington Post, reported talks with EchoStar about Boost Mobile or access to its network. No signed deal is established by the report.",
+      "channel": "A possible route into terrestrial wireless distribution, with transaction, carrier-consent and investment uncertainties.",
+      "sources": [{"publisher": "Reuters, citing Washington Post", "kind": "Wire", "url": "https://www.investing.com/news/stock-market-news/spacex-in-talks-to-buy-boost-mobile-or-use-its-network-washington-post-reports-4990666"}]
+    },
+    {
+      "id": "qualcomm-network", "date": "2026-11-04", "timing": "unknown", "category": "Deals", "evidence": "Confirmed",
+      "title": "Qualcomm selected for Starlink terrestrial 5G network",
+      "summary": "Qualcomm announced it will supply cellular infrastructure platforms for Starlink Mobile's planned US terrestrial network, with rollout intended to start in 2027.",
+      "channel": "Adds implementation detail to the wireless strategy, while raising questions about capital spending and deployment economics.",
+      "sources": [{"publisher": "Qualcomm", "kind": "Primary", "url": "https://www.qualcomm.com/news/releases/2026/11/spacex-selects-qualcomm-to-accelerate-starlink-mobile-s-nationwi"}]
+    },
+    {
+      "id": "post-election-scrutiny", "date": "2026-11-04", "timing": "unknown", "category": "War & policy", "evidence": "Reported analysis",
+      "title": "Post-election reporting focuses on scrutiny of Musk businesses",
+      "summary": "Contemporaneous reporting discussed possible oversight and merger-review implications after the midterm results. These were interpretations of policy risk.",
+      "channel": "Potential changes in oversight can affect expectations, but this reporting does not identify a proven cause of SpaceX's move.",
+      "sources": [{"publisher": "Investing.com", "kind": "Reporting", "url": "https://www.investing.com/news/stock-market-news/spacex-tesla-slide-as-election-risks-mount-morgan-stanley-turns-bullish-4998990"}]
+    },
+    {
+      "id": "ai-market-selloff", "date": "2026-11-05", "timing": "intraday", "category": "Market", "evidence": "Confirmed",
+      "title": "Broad AI and technology selloff",
+      "summary": "Wall Street saw a broad selloff led by AI and technology shares. Compare SPCX with SPY and QQQ before treating its decline as company-specific.",
+      "channel": "A shared market shock is a competing explanation for a stock move. Benchmark-relative returns are descriptive, not a causal decomposition.",
+      "sources": [
+        {"publisher": "Associated Press", "kind": "Wire", "url": "https://apnews.com/article/7ee9c212805aa5e70cf34d25aab7a36e"},
+        {"publisher": "Axios", "kind": "Reporting", "url": "https://www.axios.com/2026/11/05/nasdaq-plummets-correction"}
+      ]
+    }
+  ]
+}

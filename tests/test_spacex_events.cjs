@@ -1,0 +1,35 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+const context = {window: {}};
+vm.createContext(context);
+vm.runInContext(fs.readFileSync(path.join(__dirname, '../frontend/spacex-context.js'), 'utf8'), context);
+const windowFor = context.window.SpaceXContext.eventWindow;
+const dates = ['2026-06-12', '2026-06-15', '2026-06-16', '2026-06-17', '2026-06-18'];
+const rows = [100, 110, 121, 108.9, 119.79].map((close, i) => ({date: dates[i], close, volume: 100 * (i + 1)}));
+const benchmark = [200, 210, 220, 230, 240].map((close, i) => ({date: dates[i], close}));
+const event = {date: dates[0], timing: 'after_close'};
+const one = windowFor(event, rows, benchmark, 1);
+assert.equal(one.session, '2026-06-15', 'after-close Friday maps to Monday');
+assert.equal(one.from, '2026-06-12');
+assert.ok(Math.abs(one.stock - 10) < 1e-8);
+assert.ok(Math.abs(one.difference - 5) < 1e-8, 'subtract price returns in percentage points');
+assert.equal(one.volumeRatio, 2, 'volume baseline excludes the event session');
+const three = windowFor(event, rows, benchmark, 3);
+assert.equal(three.to, '2026-06-17', 'three-session window includes mapped session');
+assert.ok(Math.abs(three.stock - 8.9) < 1e-8);
+assert.equal(windowFor(event, rows, benchmark, 5).status, 'pending');
+assert.equal(windowFor({date: dates[0]}, rows, benchmark).status, 'no_prior_close');
+assert.equal(windowFor({date: '2026-06-19'}, rows, benchmark).status, 'pending');
+assert.equal(windowFor({date: '2026-06-13'}, rows, benchmark).session, '2026-06-15');
+assert.equal(windowFor({date: dates[2], event_date: dates[0]}, rows, benchmark).session, dates[2], 'use report date rather than retrospective occurrence date');
+assert.equal(windowFor(event, rows, benchmark.slice(1)).benchmark, null, 'missing benchmark endpoints must not become zero');
+const archive = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/spacex_events.json'), 'utf8'));
+assert.equal(new Set(archive.events.map(e => e.id)).size, archive.events.length);
+for (const e of archive.events) {
+  assert.ok(e.date <= archive.reviewed_at && /^2026-\d\d-\d\d$/.test(e.date));
+  assert.ok(e.sources.length && e.sources.every(s => /^https:\/\//.test(s.url)));
+  assert.ok(['after_close', 'before_open', 'intraday', 'unknown'].includes(e.timing));
+}
+console.log('PASS: session mapping, windows, pending values, benchmark differences, volume baseline and archive integrity');

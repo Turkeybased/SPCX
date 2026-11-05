@@ -47,7 +47,7 @@ def get_with_retry(url, **kwargs):
 
 WATCHES = [
     {"name": "Anthropic", "query": '"Anthropic"', "forms": "S-1,S-1/A",
-     "confidential_filed": "2026-06-01"},
+     "confidential_filed": "2026-06-01", "cik": 2130357},
     {"name": "OpenAI", "query": '"OpenAI"', "forms": "S-1,S-1/A",
      "confidential_filed": "2026-06-08"},
 ]
@@ -60,23 +60,25 @@ def fts_search(query, forms):
     return resp.json()
 
 
-def spacex_filings():
-    resp = get_with_retry(SUBMISSIONS_URL.format(cik=SPACEX_CIK),
+def issuer_filings(cik):
+    """Use the issuer CIK once known; a full-text mention is not a filing."""
+    resp = get_with_retry(SUBMISSIONS_URL.format(cik=cik),
                           headers=HEADERS, timeout=30)
     data = resp.json()
     recent = data.get("filings", {}).get("recent", {})
     forms = recent.get("form", [])
     dates = recent.get("filingDate", [])
     accs = recent.get("accessionNumber", [])
+    docs = recent.get("primaryDocument", [])
     hits = []
-    for form, dt, acc in zip(forms, dates, accs):
+    for form, dt, acc, doc in zip(forms, dates, accs, docs):
         if form in ("424B4", "S-1", "S-1/A"):
             acc_nodash = acc.replace("-", "")
             hits.append({
                 "form": form, "filing_date": dt,
-                "url": f"https://www.sec.gov/Archives/edgar/data/{SPACEX_CIK}/{acc_nodash}/{acc}-index.htm",
+                "url": f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc_nodash}/{doc}",
             })
-    return hits
+    return sorted(hits, key=lambda f: f["filing_date"], reverse=True)
 
 
 def main():
@@ -84,64 +86,79 @@ def main():
               "companies": []}
     errors = 0
     total_watches = len(WATCHES) + 1  # +1 for the SpaceX submissions check
+    # A transient outage must not erase a previously observed public filing.
+    previous = json.loads(OUT_PATH.read_text(encoding="utf-8")) if OUT_PATH.exists() else {}
+    cached = {c["name"]: c for c in previous.get("companies", [])}
 
     for w in WATCHES:
         entry = {"name": w["name"], "confidential_s1_filed": w["confidential_filed"],
                  "public_s1": None, "status": "confidential (not in full-text search)"}
         try:
-            data = fts_search(w["query"], w["forms"])
-            hits = data.get("hits", {}).get("hits", [])
-            # Filter to hits where the filer entity actually matches the name.
-            matches = []
-            for h in hits:
-                src = h.get("_source", {})
-                names = " ".join(src.get("display_names", []))
-                if w["name"].lower() in names.lower():
-                    matches.append({
-                        "form": src.get("file_type"),
-                        "filing_date": src.get("file_date"),
-                        "entity": names,
-                        "url": "https://www.sec.gov/Archives/edgar/data/"
-                               + src.get("_id", "").replace(":", "/"),
-                    })
+            if w.get("cik"):
+                entry["cik"] = str(w["cik"])
+                matches = issuer_filings(w["cik"])
+                entry["filings"] = matches
+            else:
+                matches = search_issuer_filings(w)
             if matches:
                 entry["public_s1"] = matches[0]
-                entry["status"] = "PUBLIC S-1 ON EDGAR"
+                entry["status"] = "424B4 FILED (priced)" if any(f["form"] == "424B4" for f in matches) else "PUBLIC S-1 ON EDGAR"
+            else:
+                entry["status"] = "No public S-1 found; confidential submission previously reported"
+            entry["checked_at"] = status["generated_at"]
         except Exception as exc:
-            entry["status"] = f"error: {exc}"
+            entry = dict(cached.get(w["name"], entry))
+            entry["refresh_error"] = str(exc)
             errors += 1
         status["companies"].append(entry)
-        time.sleep(0.2)  # stay far under 10 req/s
+        time.sleep(0.2)
 
     spacex = {"name": "SpaceX", "cik": str(SPACEX_CIK),
               "filings": [], "status": "no S-1/424B4 on EDGAR yet"}
     try:
-        filings = spacex_filings()
+        filings = issuer_filings(SPACEX_CIK)
         spacex["filings"] = filings
         if any(f["form"] == "424B4" for f in filings):
             spacex["status"] = "424B4 FILED (priced)"
         elif filings:
             spacex["status"] = "S-1 on EDGAR"
+        spacex["checked_at"] = status["generated_at"]
     except Exception as exc:
-        spacex["status"] = f"error: {exc}"
+        spacex = dict(cached.get("SpaceX", spacex))
+        spacex["refresh_error"] = str(exc)
         errors += 1
     status["companies"].append(spacex)
 
     tmp = OUT_PATH.with_suffix(OUT_PATH.suffix + ".tmp")
     tmp.write_text(json.dumps(status, indent=2), encoding="utf-8")
-    tmp.replace(OUT_PATH)  # atomic: no truncated JSON if the run is killed
+    tmp.replace(OUT_PATH)
     print(f"wrote {OUT_PATH}")
     if errors:
-        print(f"WARNING: {errors}/{total_watches} EDGAR watch(es) failed after "
-              "retries — if this repeats, stop and report.", file=sys.stderr)
-    # Only fail the daily refresh if EVERY watch failed (likely SEC-wide
-    # outage / block). A single failed watch is downgraded to a logged
-    # warning + exit 0 so one EDGAR blip doesn't block the price refresh and
-    # the day's data commit.
-    if errors >= total_watches:
-        print("ERROR: all EDGAR watches failed — failing the step.", file=sys.stderr)
-        return 1
-    return 0
+        print(f"WARNING: {errors}/{total_watches} EDGAR watch(es) failed; prior observations retained.", file=sys.stderr)
+    return 1 if errors >= total_watches else 0
+
+
+def search_issuer_filings(w):
+    """Fallback for issuers whose CIK has not yet been identified."""
+    data = fts_search(w["query"], w["forms"])
+    hits = data.get("hits", {}).get("hits", [])
+    matches = []
+    for hit in hits:
+        src = hit.get("_source", {})
+        names = src.get("display_names", [])
+        # Ignore funds whose names merely contain the watched company.
+        if any(n.split(" (CIK")[0].strip().lower() in
+               {w["name"].lower(), w["name"].lower() + " group pbc", w["name"].lower() + ", pbc"}
+               for n in names):
+            acc = src.get("adsh", "")
+            ciks = src.get("ciks", [])
+            document = hit.get("_id", "").split(":", 1)[-1]
+            if not acc or not ciks or not document:
+                continue
+            matches.append({"form": src.get("file_type"), "filing_date": src.get("file_date"),
+                            "entity": " ".join(names),
+                            "url": f"https://www.sec.gov/Archives/edgar/data/{int(ciks[0])}/{acc.replace('-', '')}/{document}"})
+    return sorted(matches, key=lambda f: f["filing_date"] or "", reverse=True)
 
 
 if __name__ == "__main__":

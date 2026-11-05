@@ -1,0 +1,44 @@
+{
+  "company": "Anthropic",
+  "as_of": "2026-11-05",
+  "financials_as_of": "2026-09-30",
+  "cik": "2130357",
+  "proposed_ticker": "ANT",
+  "exchange": "Nasdaq Global Select Market (applied)",
+  "stage": "Public S-1 · amended November 2",
+  "filing_date": "2026-11-02",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+  "source_sections": "Cover; quarterly results pp. 161–165; compute commitments; governance",
+  "offer_price_usd": null,
+  "raise_usd": null,
+  "ipo_valuation_usd": null,
+  "ipo_date": null,
+  "terms_note": "Price range, share count, proceeds and listing date are blank in the reviewed S-1/A. ANT is proposed, not a trading symbol with a live quote.",
+  "last_private_round": {
+    "date": "2026-05-28",
+    "name": "Series H",
+    "valuation_usd": 965000000000,
+    "raise_usd": 65000000000,
+    "source_url": "https://www.anthropic.com/news/series-h"
+  },
+  "quarterly_financials": [
+    {"period": "Q1 ’25", "period_end": "2025-03-31", "revenue_usd": 376000000, "operating_income_usd": -935000000, "adjusted_operating_income_usd": -830000000, "net_income_usd": -6592000000},
+    {"period": "Q2 ’25", "period_end": "2025-06-30", "revenue_usd": 787000000, "operating_income_usd": -1200000000, "adjusted_operating_income_usd": -1019000000, "net_income_usd": -6377000000},
+    {"period": "Q3 ’25", "period_end": "2025-09-30", "revenue_usd": 1382000000, "operating_income_usd": -3089000000, "adjusted_operating_income_usd": -1284000000, "net_income_usd": -12138000000},
+    {"period": "Q4 ’25", "period_end": "2025-12-31", "revenue_usd": 2040000000, "operating_income_usd": -2836000000, "adjusted_operating_income_usd": -1721000000, "net_income_usd": -16858000000},
+    {"period": "Q1 ’26", "period_end": "2026-03-31", "revenue_usd": 4731000000, "operating_income_usd": -1667000000, "adjusted_operating_income_usd": -617000000, "net_income_usd": -14439000000},
+    {"period": "Q2 ’26", "period_end": "2026-06-30", "revenue_usd": 11555000000, "operating_income_usd": 974000000, "adjusted_operating_income_usd": 2235000000, "net_income_usd": -66309000000},
+    {"period": "Q3 ’26", "period_end": "2026-09-30", "revenue_usd": 16956000000, "operating_income_usd": -567000000, "adjusted_operating_income_usd": 2463000000, "net_income_usd": -23291000000}
+  ],
+  "compute_commitments_usd": 895400000000,
+  "compute_due_next_12_months_usd": 69800000000,
+  "compute_commitments_note": "As of and subsequent to September 30, 2026; purchase and lease commitments, substantially all compute/infrastructure, extend through 2045. Not current debt or a one-year bill.",
+  "accounting_note": "Adjusted operating income excludes stock compensation, non-cash charitable contributions and the Bartz settlement. GAAP net loss also includes major fair-value remeasurements; it is not cash burn.",
+  "timeline": [
+    {"date": "2026-05-28", "event": "$65B Series H at a $965B post-money valuation", "source_url": "https://www.anthropic.com/news/series-h"},
+    {"date": "2026-06-01", "event": "Confidential draft S-1 submitted", "source_url": "https://www.anthropic.com/news/confidential-draft-s1-sec"},
+    {"date": "2026-10-26", "event": "Public S-1 filed", "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"},
+    {"date": "2026-11-02", "event": "S-1/A adds September-quarter results", "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"},
+    {"date": "Pending", "event": "Price range, final terms and first trading day", "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"}
+  ]
+}

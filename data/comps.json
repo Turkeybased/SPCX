@@ -13,7 +13,14 @@
     "schema": {
       "record": "{ ...metric_fields, source_url: string, conflict_note: string|null, as_of: 'YYYY-MM-DD' }"
     },
-    "as_of": "2026-06-10"
+    "as_of": "2026-06-10",
+    "company_updates": {
+      "Anthropic": {
+        "as_of": "2026-11-05",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+        "note": "Anthropic updated from November 2 S-1/A; other historical research remains the June snapshot."
+      }
+    }
   },
   "deals": [
     {
@@ -70,44 +77,45 @@
       "gray_market": "Hyperliquid perp ~$157 (~+16% vs offer) Jun 10, off May peak $216-230; Polymarket consensus first close ~$175 (~$2.3T), 75% prob close >$135",
       "contracted_ai_revenue": "Anthropic Colossus lease $1.25B/mo to May 2029 (S-1); Google Cloud Service Agreement $920M/mo Oct 2026-Jun 2029, ~110k NVIDIA GPUs (FWP Jun 5) - terminable by either party on 90 days' notice after Dec 31 2026, and by Google if the Sep 30 2026 GPU delivery deadline is missed",
       "cik": "1181412",
-      "day1_return_pct": 0.0,
+      "day1_return_pct": 19.2222,
       "one_yr_return_pct": null,
-      "return_to_date_pct": 4.67,
+      "return_to_date_pct": -8.4296,
       "verified": true,
       "source_url": "https://www.fidelity.com/bin-public/600_Fidelity_Institutional/fidelityinstitutional/Application/AP154833/documents/clients/SPCXLV/SPCXLVred.pdf",
       "conflict_note": "(#2 RESOLVED) Musk voting = 82.4% per S-1/A#2; '79%' unsourced, BitMEX '85%' uncorroborated. (#3 RESOLVED) Dec 2025 tender = $421/sh at ~$800B (Reuters/Bloomberg/Fortune). (#4) Starlink $4.4B op profit vs $7.2B segment EBITDA are different metrics - do not conflate. (OPEN) Order book: ~2x (Bloomberg TV) vs 3.5-4x (Reuters) oversubscription.",
       "as_of": "2026-06-10",
-      "last_price": 141.31,
-      "last_price_as_of": "2026-11-03",
+      "last_price": 123.62,
+      "last_price_as_of": "2026-11-05",
       "status_src": "https://www.npr.org/2026/06/11/nx-s1-5853199/spacex-ipo-price-elon-musk"
     },
     {
       "company": "Anthropic",
       "ticker": null,
-      "exchange": null,
-      "status": "confidential S-1 filed 2026-06-01 (Anthropic PBC); public S-1 ~Summer-Fall; target window ~Oct 2026",
+      "exchange": "Nasdaq Global Select Market (applied)",
+      "status": "PUBLIC S-1/A filed 2026-11-02; proposed ANT on Nasdaq; IPO pricing, proceeds and first trading day pending",
       "ipo_date": null,
       "offer_price_usd": null,
       "target_valuation_usd": 965000000000,
-      "valuation_basis": "Series H $65B at $965B post-money, May 28 2026 (Altimeter, Dragoneer, Greenoaks, Sequoia; $15B of $65B previously committed hyperscaler money)",
+      "valuation_basis": "Last private mark: $65B Series H at $965B post-money on 2026-05-28; not an IPO valuation",
       "raise_usd": null,
-      "raise_note": "TBD; FutureSearch median post-IPO mktcap $1.05T (p10 $750B / p90 $1.6T)",
-      "revenue_usd": 47000000000,
-      "revenue_period": "ARR May 2026 ($14B Feb 2026, ~$30B Apr 2026; Q1 2026 GAAP quarterly $4.8B; Claude Code ~$8B ARR)",
-      "profitable": null,
-      "profitability_note": "first operating profit ~$559M projected Q2 2026 (operating, not GAAP net, excl. frontier training capex); 2026 FY cash flow ~-$11B to -$14B; break-even ~2028",
-      "ps_multiple": 20.5,
-      "ps_multiple_note": "derived ~21x ARR (FutureSearch: ~10x median 2027 ARR of $93B)",
-      "governance": "Delaware PBC + Long-Term Benefit Trust: Class T stock held by independent trust elects board majority by ~2027; public shareholders will NOT control the board; underwriters Morgan Stanley, Goldman Sachs, JPMorgan",
-      "compute_commitments": "~$382B+ disclosed (AWS >$100B/10yr, Google ~$200B/5yr, Azure $30B, SpaceX Colossus $1.25B/mo to May 2029, Fluidstack $50B, Akamai $1.8B)",
+      "raise_note": "Pending; no priced IPO terms in reviewed November 2 S-1/A",
+      "revenue_usd": 35282000000,
+      "revenue_period": "TTM through 2026-09-30, sum of four reported quarters; not ARR",
+      "profitable": false,
+      "profitability_note": "Q3 2026: GAAP operating loss $567M; adjusted operating income $2.463B; GAAP net loss $23.291B. Net loss includes substantial fair-value remeasurements; not cash burn.",
+      "ps_multiple": 27.35,
+      "ps_multiple_note": "May 2026 private valuation / September 2026 TTM revenue; dates differ, not a current IPO multiple",
+      "governance": "PBC; LTBT Class T elects a board majority; founder Class F holds 50.1% of general voting power. Public Class A does not control the board.",
+      "compute_commitments": "$895.4B as of and subsequent to September 30, 2026; $69.8B due in following 12 months; commitments extend through 2045, not current debt",
       "valuation_ladder": "$61.5B (Mar 2025, Series E) -> $183B (Sep 2025, F) -> $380B (Feb 2026, G) -> $965B (May 2026, H) = ~15.7x in ~14 months",
       "day1_return_pct": null,
       "one_yr_return_pct": null,
       "return_to_date_pct": null,
       "verified": false,
-      "source_url": "https://www.anthropic.com/news/confidential-draft-s1-sec",
-      "conflict_note": "(NEW, v2 sec.2.3) 2025 annual revenue disputed: ~$4.5B (The Information) vs >$5B-to-date (CFO sworn declaration Mar 2026) vs ~$10B (CNBC) - different methodologies (GAAP vs ARR vs cumulative); public S-1 will settle. ARR figures are forward run-rates, not TTM GAAP; gross-vs-net treatment of hyperscaler compute credits unresolved.",
-      "as_of": "2026-06-10"
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+      "conflict_note": "Historical ARR estimates superseded here by reported TTM revenue. GAAP operating, adjusted operating and GAAP net results are distinct; the last private funding valuation is not an IPO price.",
+      "as_of": "2026-11-05",
+      "proposed_ticker": "ANT"
     },
     {
       "company": "OpenAI",

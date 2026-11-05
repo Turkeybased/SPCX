@@ -2,9 +2,23 @@
 
 Personal dashboard putting the SpaceX (SPCX), Anthropic, and OpenAI IPOs in
 historical context. Python ETL → versioned `data/*.json` → static single-page
-dashboard (`site/index.html`, Chart.js via CDN). No backend, no API keys.
+dashboard (`frontend/`, deployed by Vercel). No backend, no API keys.
 
 ## Status
+
+**November 5 update:** the served dashboard now has **Overview**, **Anthropic**
+and **SpaceX** views with shared historical charts. Anthropic research uses the
+November 2 public S-1/A (CIK 2130357): quarterly reported financials, pending
+offering terms, filing milestones and an illustrative valuation slider. Its
+last private funding valuation is labeled separately from IPO pricing. See
+`data/anthropic.json` for primary-source links and dates. SpaceX prices have been
+refreshed through November 5 (102 completed sessions) with SPY/QQQ context and a
+19-item source-linked event archive. Select a numbered marker to inspect returns,
+volume and market comparisons around publication; use filters to explore deals,
+reported acquisition talks, war/policy, earnings, launches and capital events.
+The archive is curated and explicitly separates evidence from interpretation.
+
+The following describes the original June research seed:
 
 **Seeded and live.** `data/comps.json` is populated from the v2 research drop
 (`docs/research/`, 2026-06-10): 3 deals, 10 mega-IPOs, 17 tech comps
@@ -30,16 +44,25 @@ Full provenance map and integrity rules: [docs/DATA.md](docs/DATA.md).
   Anthropic/OpenAI via full-text search; SpaceX S-1/424B4 via CIK 1181412).
 - `etl/refresh_prices.py`, `etl/edgar_watch.py`, `etl/run_all.py`
 - `site/index.html` — views R1–R6, conflict ⚠ tooltips, source links,
-  staleness timestamp.
+  staleness timestamp (legacy version).
+- `frontend/index.html`, `ipo-watch.js`, `dashboard.css` — the served dashboard;
+  `frontend/data/` mirrors the canonical JSON from `data/`.
+- `data/anthropic.json` — reviewed quarterly results and offering milestones;
+  research is manually refreshed, while the filing watcher runs separately.
+- `data/spacex_market.json` — full completed-session SPCX OHLCV, plus SPY/QQQ.
+- `data/spacex_events.json` — curated news and sources, public dates, timing
+  confidence and potential business channels. Daily price refreshes do not add news.
 
 ## Run
 
 ```powershell
 python -m pip install yfinance requests
 python etl/run_all.py
+# To refresh only SpaceX and its benchmarks, without re-pricing the old comps:
+python etl/refresh_spacex_context.py
 # serve repo root so the site can fetch ../data/*.json:
 python -m http.server 8347
-# open http://localhost:8347/site/
+# open http://localhost:8347/frontend/
 ```
 
 ## Daily refresh
@@ -52,6 +75,9 @@ schtasks /Create /TN "IPO Dashboard Refresh" /SC DAILY /ST 17:30 `
 ```
 
 Or GitHub Actions: see `.github/workflows/refresh.yml`.
+
+Run filing-watcher regression checks with `python -m unittest discover -s tests -v`.
+Event-window and archive checks: `node tests/test_spacex_events.cjs`.
 
 ## Guardrails
 

@@ -12,14 +12,15 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE.parent / "data"
 FRONTEND_DATA = HERE.parent / "frontend" / "data"
 
-STEPS = ["edgar_watch.py", "refresh_prices.py"]
+STEPS = ["edgar_watch.py", "refresh_prices.py", "refresh_spacex_context.py"]
 
 
 def main():
     rc = 0
     for step in STEPS:
         print(f"=== {step} ===")
-        result = subprocess.run([sys.executable, str(HERE / step)])
+        arguments = ["--no-sync"] if step == "refresh_spacex_context.py" else []
+        result = subprocess.run([sys.executable, str(HERE / step), *arguments])
         rc = rc or result.returncode
     if rc == 0:
         FRONTEND_DATA.mkdir(parents=True, exist_ok=True)

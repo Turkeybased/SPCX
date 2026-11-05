@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T01:33:37+00:00",
+  "generated_at": "2026-11-05T16:36:23+00:00",
   "companies": [
     {
       "name": "Anthropic",
@@ -7,16 +7,30 @@
       "public_s1": {
         "form": "S-1/A",
         "filing_date": "2026-11-02",
-        "entity": "Anthropic, PBC  (CIK 0002130357)",
-        "url": "https://www.sec.gov/Archives/edgar/data/"
+        "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"
       },
-      "status": "PUBLIC S-1 ON EDGAR"
+      "status": "PUBLIC S-1 ON EDGAR",
+      "cik": "2130357",
+      "filings": [
+        {
+          "form": "S-1/A",
+          "filing_date": "2026-11-02",
+          "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"
+        },
+        {
+          "form": "S-1",
+          "filing_date": "2026-10-26",
+          "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
+        }
+      ],
+      "checked_at": "2026-11-05T16:36:23+00:00"
     },
     {
       "name": "OpenAI",
       "confidential_s1_filed": "2026-06-08",
       "public_s1": null,
-      "status": "confidential (not in full-text search)"
+      "status": "No public S-1 found; confidential submission previously reported",
+      "checked_at": "2026-11-05T16:36:23+00:00"
     },
     {
       "name": "SpaceX",
@@ -25,25 +39,26 @@
         {
           "form": "424B4",
           "filing_date": "2026-06-12",
-          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/0001628280-26-042639-index.htm"
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm"
         },
         {
           "form": "S-1/A",
           "filing_date": "2026-06-03",
-          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/0001628280-26-040364-index.htm"
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/spaceexplorationtechnologib.htm"
         },
         {
           "form": "S-1/A",
           "filing_date": "2026-06-01",
-          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/0001628280-26-039276-index.htm"
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039276/spaceexplorationtechnologi.htm"
         },
         {
           "form": "S-1",
           "filing_date": "2026-05-20",
-          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/0001628280-26-036936-index.htm"
+          "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm"
         }
       ],
-      "status": "424B4 FILED (priced)"
+      "status": "424B4 FILED (priced)",
+      "checked_at": "2026-11-05T16:36:23+00:00"
     }
   ]
 }

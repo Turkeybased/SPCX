@@ -18,8 +18,9 @@ docs/research/*  (frozen research inputs, never read by the site)
       │
       └─ etl/edgar_watch.py          (daily) → data/filing_status.json
 
-site/index.html  reads ONLY data/*.json. No analysis logic lives in the page
-beyond formatting and one derived chart coloring.
+frontend/ reads frontend/data/*.json (synced from data/ by run_all.py).
+site/index.html is the legacy dashboard. The frontend derives TTM revenue by
+summing four quarters and shows explicitly labeled valuation/revenue scenarios.
 ```
 
 ## Files
@@ -34,6 +35,9 @@ beyond formatting and one derived chart coloring.
 | `data/prices.json` | `refresh_prices.py` | Daily closes, computed day-1/+365d/to-date per ticker; full SPCX series | yfinance (Yahoo), unofficial |
 | `data/filing_status.json` | `edgar_watch.py` | Public S-1/424B4 status for Anthropic, OpenAI, SpaceX (CIK 1181412) | SEC EDGAR FTS + submissions API |
 | `data/ritter_cohorts.json` | `seed_from_research.py` (conversion step in repo history) | Same as CSV, JSON-ified | Ritter |
+| `data/anthropic.json` | Manual primary-source review, 2026-11-05 | Quarterly results, offering terms, compute obligations and filing milestones | Anthropic November 2 S-1/A and May 28 Series H announcement; source URLs in file |
+| `data/spacex_market.json` | `refresh_spacex_context.py` | Completed-session SPCX, SPY and QQQ OHLCV since June 12 | Yahoo chart endpoint; issuer identity checked, no splits in retrieved period; unadjusted price returns exclude dividends |
+| `data/spacex_events.json` | Curated source review, 2026-11-05 | 19 reports and milestones, categories, evidence labels, public dates, timing confidence and potential business channels | Party/SEC releases, Reuters, AP, congressional correspondence and identified reporting; per-entry source URLs |
 
 ## Integrity rules (enforced in code — review these paths)
 
@@ -63,8 +67,32 @@ beyond formatting and one derived chart coloring.
 
 ## Known data caveats
 
-- Anthropic/OpenAI financials are all secondary-source until their S-1s go
-  public (no audited filings exist). ARR ≠ GAAP revenue.
+- Event/price alignment is descriptive. Use public report dates; do not backdate
+  later disclosures into earlier prices. After-close items map to the next
+  available session. Unknown intraday timing is explicitly flagged. One-, three-
+  and five-session windows include the mapped session and use its prior close.
+  Missing prior closes, benchmarks and future endpoints are not replaced by zero.
+- SPY/QQQ comparisons subtract price returns in percentage points. They do not
+  control for beta, overlapping announcements or unobserved information and do
+  not establish causal impact. The curated archive is selective; largest-move
+  sessions remain visible even without a researched news match.
+- SpaceX prices are refreshed independently through November 5. Other ticker
+  snapshots retain the per-record dates from the broader ETL. The focused script
+  preserves the global prices timestamp and writes `spacex_refreshed_at` instead.
+
+- Anthropic's company record and dedicated research snapshot were updated from
+  its public November 2 S-1/A. Quarterly figures are reported interim results.
+  OpenAI financials and historical comparables remain the June research snapshot.
+  ARR, quarterly revenue, TTM revenue and simple quarterly annualization are
+  distinct. Anthropic's May private valuation divided by September TTM revenue
+  combines different dates and is explicitly labeled as such in the UI.
+- Anthropic's IPO price, proceeds, valuation and trading date remain null in the
+  reviewed filing. Its proposed ticker ANT is not added to the trading-price feed.
+- Research is manually reviewed; the daily filing watch does not extract new
+  financials. `seed_from_research.py` recreates the June seed and would overwrite
+  the later Anthropic company revision; preserve/reapply that revision on reseed.
+- Filing observations carry per-issuer `checked_at`; a failed check keeps the
+  prior public filing and adds `refresh_error`, rather than erasing the evidence.
 - Cerebras offer price ~$155 is the range midpoint; exact pending 424B4.
 - Ritter "% below offer" (56.1% / 44.5%) is the 1975–2021 **aggregate**;
   year-specific 1999–2000 needs IPOALL.xlsx (listed in findings §6.7).
