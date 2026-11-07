@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T23:02:35+00:00",
+  "generated_at": "2026-11-07T01:00:22+00:00",
   "as_of": "2026-11-05",
   "market_timezone": "America/New_York",
   "session_policy": "Completed sessions only; 15-minute publication buffer after close.",
@@ -822,11 +822,11 @@
       },
       {
         "date": "2026-11-05",
-        "open": 131.335,
+        "open": 131.34,
         "high": 131.87,
-        "low": 120.42,
+        "low": 120.39,
         "close": 123.62,
-        "volume": 168452598
+        "volume": 171356200
       }
     ],
     "last_close": 123.62,
@@ -1654,7 +1654,7 @@
           "high": 765.97,
           "low": 732.71,
           "close": 733.0,
-          "volume": 120886017
+          "volume": 125892800
         }
       ],
       "last_close": 733.0,
@@ -2478,10 +2478,10 @@
         {
           "date": "2026-11-05",
           "open": 683.12,
-          "high": 683.64,
+          "high": 683.65,
           "low": 647.05,
           "close": 647.05,
-          "volume": 125582100
+          "volume": 130677400
         }
       ],
       "last_close": 647.05,
