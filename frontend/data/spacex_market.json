@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-12T02:20:38+00:00",
-  "as_of": "2026-11-10",
+  "generated_at": "2026-11-13T01:59:26+00:00",
+  "as_of": "2026-11-11",
   "market_timezone": "America/New_York",
   "session_policy": "Completed sessions only; 15-minute publication buffer after close.",
   "offer_price_usd": 135.0,
@@ -851,10 +851,18 @@
         "low": 137.65,
         "close": 143.09,
         "volume": 82134500
+      },
+      {
+        "date": "2026-11-11",
+        "open": 143.38,
+        "high": 145.16,
+        "low": 138.62,
+        "close": 139.75,
+        "volume": 114209100
       }
     ],
-    "last_close": 143.09,
-    "last_close_date": "2026-11-10"
+    "last_close": 139.75,
+    "last_close_date": "2026-11-11"
   },
   "benchmarks": {
     "SPY": {
@@ -1703,10 +1711,18 @@
           "low": 744.86,
           "close": 749.92,
           "volume": 40698600
+        },
+        {
+          "date": "2026-11-11",
+          "open": 756.8,
+          "high": 762.51,
+          "low": 754.9,
+          "close": 759.81,
+          "volume": 39151000
         }
       ],
-      "last_close": 749.92,
-      "last_close_date": "2026-11-10"
+      "last_close": 759.81,
+      "last_close_date": "2026-11-11"
     },
     "QQQ": {
       "ticker": "QQQ",
@@ -2554,10 +2570,18 @@
           "low": 667.05,
           "close": 674.76,
           "volume": 38845200
+        },
+        {
+          "date": "2026-11-11",
+          "open": 687.28,
+          "high": 695.57,
+          "low": 683.56,
+          "close": 690.38,
+          "volume": 44871800
         }
       ],
-      "last_close": 674.76,
-      "last_close_date": "2026-11-10"
+      "last_close": 690.38,
+      "last_close_date": "2026-11-11"
     }
   }
 }

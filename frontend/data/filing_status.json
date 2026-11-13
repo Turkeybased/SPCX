@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T02:20:32+00:00",
+  "generated_at": "2026-11-13T01:59:17+00:00",
   "companies": [
     {
       "name": "Anthropic",
@@ -28,14 +28,14 @@
           "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm"
         }
       ],
-      "checked_at": "2026-11-12T02:20:32+00:00"
+      "checked_at": "2026-11-13T01:59:17+00:00"
     },
     {
       "name": "OpenAI",
       "confidential_s1_filed": "2026-06-08",
       "public_s1": null,
       "status": "No public S-1 found; confidential submission previously reported",
-      "checked_at": "2026-11-12T02:20:32+00:00"
+      "checked_at": "2026-11-13T01:59:17+00:00"
     },
     {
       "name": "SpaceX",
@@ -63,7 +63,7 @@
         }
       ],
       "status": "424B4 FILED (priced)",
-      "checked_at": "2026-11-12T02:20:32+00:00"
+      "checked_at": "2026-11-13T01:59:17+00:00"
     }
   ]
 }
