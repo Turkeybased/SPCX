@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-14T01:31:32+00:00",
-  "as_of": "2026-11-12",
+  "generated_at": "2026-11-17T04:02:25+00:00",
+  "as_of": "2026-11-16",
   "market_timezone": "America/New_York",
   "session_policy": "Completed sessions only; 15-minute publication buffer after close.",
   "offer_price_usd": 135.0,
@@ -867,10 +867,26 @@
         "low": 137.75,
         "close": 139.94,
         "volume": 95961800
+      },
+      {
+        "date": "2026-11-13",
+        "open": 140.17,
+        "high": 142.24,
+        "low": 136.64,
+        "close": 139.11,
+        "volume": 78515500
+      },
+      {
+        "date": "2026-11-16",
+        "open": 138.5,
+        "high": 139.98,
+        "low": 135.0,
+        "close": 137.36,
+        "volume": 101122200
       }
     ],
-    "last_close": 139.94,
-    "last_close_date": "2026-11-12"
+    "last_close": 137.36,
+    "last_close_date": "2026-11-16"
   },
   "benchmarks": {
     "SPY": {
@@ -1735,10 +1751,26 @@
           "low": 753.67,
           "close": 757.12,
           "volume": 37460600
+        },
+        {
+          "date": "2026-11-13",
+          "open": 760.07,
+          "high": 760.12,
+          "low": 747.88,
+          "close": 754.37,
+          "volume": 38720000
+        },
+        {
+          "date": "2026-11-16",
+          "open": 749.66,
+          "high": 749.82,
+          "low": 738.07,
+          "close": 739.95,
+          "volume": 69044100
         }
       ],
-      "last_close": 757.12,
-      "last_close_date": "2026-11-12"
+      "last_close": 739.95,
+      "last_close_date": "2026-11-16"
     },
     "QQQ": {
       "ticker": "QQQ",
@@ -2602,10 +2634,26 @@
           "low": 679.83,
           "close": 688.17,
           "volume": 37219500
+        },
+        {
+          "date": "2026-11-13",
+          "open": 688.54,
+          "high": 688.75,
+          "low": 671.68,
+          "close": 679.89,
+          "volume": 42098600
+        },
+        {
+          "date": "2026-11-16",
+          "open": 671.04,
+          "high": 672.15,
+          "low": 660.48,
+          "close": 661.75,
+          "volume": 42801200
         }
       ],
-      "last_close": 688.17,
-      "last_close_date": "2026-11-12"
+      "last_close": 661.75,
+      "last_close_date": "2026-11-16"
     }
   }
 }
