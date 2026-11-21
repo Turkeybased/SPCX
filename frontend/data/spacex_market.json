@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-20T02:27:20+00:00",
-  "as_of": "2026-11-18",
+  "generated_at": "2026-11-21T02:37:54+00:00",
+  "as_of": "2026-11-20",
   "market_timezone": "America/New_York",
   "session_policy": "Completed sessions only; 15-minute publication buffer after close.",
   "offer_price_usd": 135.0,
@@ -899,10 +899,26 @@
         "low": 141.22,
         "close": 143.5,
         "volume": 86453900
+      },
+      {
+        "date": "2026-11-19",
+        "open": 144.91,
+        "high": 147.29,
+        "low": 135.5,
+        "close": 138.43,
+        "volume": 119613400
+      },
+      {
+        "date": "2026-11-20",
+        "open": 131.93,
+        "high": 133.84,
+        "low": 126.28,
+        "close": 127.79,
+        "volume": 124025300
       }
     ],
-    "last_close": 143.5,
-    "last_close_date": "2026-11-18"
+    "last_close": 127.79,
+    "last_close_date": "2026-11-20"
   },
   "benchmarks": {
     "SPY": {
@@ -1806,11 +1822,19 @@
           "high": 739.9,
           "low": 715.65,
           "close": 715.87,
-          "volume": 76476400
+          "volume": 76702600
+        },
+        {
+          "date": "2026-11-20",
+          "open": 713.56,
+          "high": 718.29,
+          "low": 686.75,
+          "close": 689.81,
+          "volume": 151049800
         }
       ],
-      "last_close": 715.87,
-      "last_close_date": "2026-11-19"
+      "last_close": 689.81,
+      "last_close_date": "2026-11-20"
     },
     "QQQ": {
       "ticker": "QQQ",
@@ -2713,11 +2737,19 @@
           "high": 676.49,
           "low": 644.34,
           "close": 645.04,
-          "volume": 70889300
+          "volume": 71465400
+        },
+        {
+          "date": "2026-11-20",
+          "open": 638.84,
+          "high": 643.28,
+          "low": 606.23,
+          "close": 608.45,
+          "volume": 134360600
         }
       ],
-      "last_close": 645.04,
-      "last_close_date": "2026-11-19"
+      "last_close": 608.45,
+      "last_close_date": "2026-11-20"
     }
   }
 }
